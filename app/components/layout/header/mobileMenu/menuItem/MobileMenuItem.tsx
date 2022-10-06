@@ -10,7 +10,7 @@ const MobileMenuItem: FC<IMobileMenuItem> = ({ title, link }) => (
   <Link href={link}>
     <a>
       <Button className={styles.button} variant="contained" color="info" size="large" fullWidth>
-        <Typography variant="h8">{title}</Typography>
+        <Typography variant="h6">{title}</Typography>
       </Button>
     </a>
   </Link>

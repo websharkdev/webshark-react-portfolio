@@ -1,0 +1,32 @@
+@import 'app/assets/styles/variables';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  z-index: 1300;
+  background-color: $color-main-background;
+  @media (min-width: $md) {
+    padding: 20px 24px;
+  }
+  @media (min-width: $lg) {
+    padding: 24px 32px;
+  }
+  @media (min-width: $xl) {
+    padding: 32px 32px 30px;
+  }
+}
+
+.logoMenu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  nav {
+    margin-left: 58px;
+    @media (max-width: $md) {
+      display: none;
+    }
+  }
+}

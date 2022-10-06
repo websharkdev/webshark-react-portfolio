@@ -5,7 +5,7 @@ import { fonts } from '@/config/constants'
 const Document = () => (
   <Html lang="en">
     <Head>
-      {fonts.map((item: string, index: number) => (
+      {fonts.map((item: string) => (
         <link href={item} rel="stylesheet" key={item} />
       ))}
     </Head>

@@ -6,7 +6,7 @@ import theme from '@/providers/customThemeProvider/theme'
 import styles from './subscribe.module.scss'
 
 const Subscribe: FC = () => {
-  const isMobile = useMediaQuery(theme.breakpoints.down('tablet'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
 
   return (
     <div>

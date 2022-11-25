@@ -2,7 +2,8 @@ import { Palette } from '@mui/material'
 import { TypographyOptions } from '@mui/material/styles/createTypography'
 
 const typography: TypographyOptions | ((palette: Palette) => TypographyOptions) | undefined = {
-  fontFamily: `'Libre Franklin', sans-serif`,
+  fontFamily: `"Montserrat", sans-serif`,
+
   h1: {
     fontWeight: 600,
     fontSize: 60,
@@ -17,8 +18,9 @@ const typography: TypographyOptions | ((palette: Palette) => TypographyOptions) 
   },
   h3: {
     fontWeight: 600,
-    fontSize: 36,
-    lineHeight: 1.2,
+    fontSize: '2em',
+    letterSpacing: 1.5,
+    lineHeight: '1.5em',
   },
   h4: {
     fontWeight: 600,
@@ -34,6 +36,12 @@ const typography: TypographyOptions | ((palette: Palette) => TypographyOptions) 
     fontWeight: 500,
     fontSize: 20,
     lineHeight: 1.4,
+  },
+  body2: {
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: 1.4,
+    letterSpacing: '1.5px',
   },
 }
 

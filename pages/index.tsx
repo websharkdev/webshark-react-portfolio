@@ -7,7 +7,7 @@ import { Home } from '@/screens/Home'
 import Meta from '@/utils/meta/Meta'
 
 const HomePage: NextPage = () => (
-  <Meta title="Home" description="Some description of page.">
+  <Meta title="Home" description="Welcome to the Bortnytskyi Alexey portfolio. It's home page">
     <Layout>
       <Home />
     </Layout>

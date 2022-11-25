@@ -1,0 +1,30 @@
+@import '@/styles/globals'
+@import '@/styles/variables'
+
+.HelpUkraine_title
+    position: relative
+    font-size: .8em
+    font-weight: 500
+    text-decoration: none
+    line-height: 20px
+    letter-spacing: 1px
+    text-decoration: none
+    color: $color-main-white
+    &::before
+        content: ''
+        height: 2px
+        width: 100%
+        background: $color-main-purpule
+        position: absolute
+        bottom: -5px
+        left: 0
+        z-index: 3
+        transform: scaleX(0) 
+        transform-origin: 0 50%
+        transition: transform .4s
+        transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1)
+    &:hover
+        color: $color-main-background
+        &::before
+            transform: scaleX(1)
+            

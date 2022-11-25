@@ -6,7 +6,4 @@ export const IS_CLIENT = typeof window !== 'undefined'
 
 export const toDay = new Date()
 
-export const fonts = [
-  'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap',
-  'https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&display=swap',
-]
+export const fonts = ['https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap']

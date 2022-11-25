@@ -7,15 +7,15 @@ export const theme = createTheme({
   breakpoints,
   palette: {
     primary: {
-      main: '#EF761F',
-      light: '#F5AC2E',
-      dark: '#DD4C1E',
+      main: '#9D4EDD',
+      light: '#B8B8FF',
+      dark: '#5A189A',
       contrastText: '#FFFFFF',
     },
     secondary: {
-      main: 'rgba(31, 23, 18, 0.64)',
-      light: '#E8EAFA',
-      dark: '#6C7C94',
+      main: '#C0F500',
+      light: '#D5FF40',
+      dark: '#506600',
       contrastText: '#FFFFFF',
     },
     error: {
@@ -47,9 +47,9 @@ export const theme = createTheme({
       paper: '#F6F6F6',
     },
     text: {
-      primary: '#111111',
-      disabled: '#C3C3C3',
-      secondary: 'rgba(31, 23, 18, 0.64)',
+      primary: '#2D2D2D',
+      disabled: '#9C9CA4',
+      secondary: '#0C0E14',
     },
     common: {
       black: '#17223F',
@@ -58,7 +58,7 @@ export const theme = createTheme({
   },
   typography,
   shape: {
-    borderRadius: 12,
+    borderRadius: 4,
   },
 })
 
@@ -100,31 +100,76 @@ theme.components = {
       {
         props: { color: 'primary', variant: 'contained' },
         style: {
-          background: 'linear-gradient(272.85deg, #EF761F 0.07%, #EF8B2B 100.07%)',
-          color: theme.palette.common.white,
+          background: theme.palette.secondary.light,
+          color: theme.palette.text.primary,
           transition: 'all 120ms ease-in',
+          borderRadius: 1,
+          boxShadow: 'none',
+          boxSizing: 'border-box',
+          '&.unStyled': {
+            background: 'transparent',
+            color: theme.palette.text.primary,
+            border: 'none',
+            ':hover': {
+              boxShadow: 'none',
+              background: 'transparent',
+              border: 'none',
+            },
+          },
           ':hover': {
-            background: 'linear-gradient(272.85deg, #E45C07 0.07%, #EF8B2B 100.07%)',
-            boxShadow: '0px 4px 14px 0px rgba(0, 0, 0, 0.1) inset',
+            boxShadow: 'none',
+            background: theme.palette.secondary.main,
+            border: '1px solid #222',
           },
         },
       },
       {
-        props: { color: 'primary', variant: 'contained', size: 'large' },
+        props: { color: 'primary', variant: 'outlined' },
         style: {
-          padding: '14px 40px',
+          background: '#9381FF',
+          color: theme.palette.secondary.light,
+          opacity: 1,
+          transition: 'all 120ms ease-in',
+          borderRadius: 1,
+          border: 'none',
+          '&.unStyled': {
+            background: 'transparent',
+            color: theme.palette.text.primary,
+            border: 'none',
+            ':hover': {
+              boxShadow: 'none',
+              background: 'transparent',
+              border: 'none',
+            },
+          },
+          ':hover': {
+            background: theme.palette.primary.dark,
+            border: `1px solid ${theme.palette.primary.light}`,
+          },
         },
       },
       {
-        props: { color: 'info', variant: 'contained' },
+        props: { color: 'primary', variant: 'text' },
         style: {
-          background: 'rgba(31, 23, 18, 0.06)',
-          color: 'rgba(31, 23, 18, 0.8)',
+          background: '#2D2D2D',
+          color: theme.palette.secondary.contrastText,
           transition: 'all 120ms ease-in',
+          borderRadius: 1,
+          boxShadow: 'none',
+          '&.unStyled': {
+            background: 'transparent',
+            color: theme.palette.text.primary,
+            border: 'none',
+            ':hover': {
+              boxShadow: 'none',
+              background: 'transparent',
+              border: 'none',
+            },
+          },
           ':hover': {
-            background: 'rgba(31, 23, 18, 0.12)',
-            color: 'rgba(31, 23, 18, 1)',
-            boxShadow: 'none',
+            color: theme.palette.primary.light,
+            border: `1px solid #000`,
+            background: '#222',
           },
         },
       },
@@ -132,35 +177,43 @@ theme.components = {
     styleOverrides: {
       sizeLarge: {
         height: 50,
-        fontSize: 18,
+        minWidth: 175,
+        fontSize: '1em',
         fontWeight: 600,
-        lineHeight: 1.2,
+        lineHeight: '19.5px',
+        letterSpacing: '1px',
         padding: '6px 16px',
-        textTransform: 'none',
+        textTransform: 'lowercase',
         boxShadow: 'none',
-        fontFamily: `'Manrope', sans-serif`,
+        fontFamily: `'Montserrat', sans-serif`,
       },
       sizeMedium: {
-        height: 38,
-        fontSize: 15,
+        height: 35,
+        minWidth: 136,
+        fontSize: '.8em',
         fontWeight: 600,
-        lineHeight: 1.2,
-        padding: '10px 16px',
-        borderRadius: 10,
-        textTransform: 'none',
+        lineHeight: '19.5px',
+        letterSpacing: '1px',
+        padding: '6px 16px',
+        textTransform: 'lowercase',
         boxShadow: 'none',
-        fontFamily: `'Manrope', sans-serif`,
+        fontFamily: `'Montserrat', sans-serif`,
+
+        '&.unStyled': {
+          minWidth: 0,
+          padding: 0,
+        },
       },
       sizeSmall: {
         height: 30,
-        fontSize: 15,
+        fontSize: '.7em',
         fontWeight: 600,
-        lineHeight: 1.2,
+        lineHeight: '19.5px',
+        letterSpacing: '1px',
         padding: '6px 16px',
-        textTransform: 'none',
-        borderRadius: 10,
+        textTransform: 'lowercase',
         boxShadow: 'none',
-        fontFamily: `'Manrope', sans-serif`,
+        fontFamily: `'Montserrat', sans-serif`,
       },
       textPrimary: {
         color: theme.palette.primary.main,
@@ -183,19 +236,30 @@ theme.components = {
       outlined: {
         color: '#1F1712',
         textTransform: 'none',
-        border: '1px solid #1F1712',
         background: 'rgba(31, 23, 18, 0.00)',
         '&:hover': {
           background: 'rgba(31, 23, 18, 0.06)',
-          border: '1px solid #1F1712',
         },
+      },
+    },
+  },
+  MuiChip: {
+    styleOverrides: {
+      root: {
+        background: '#9381FF',
+        borderRadius: 1,
+        color: theme.palette.primary.contrastText,
+        fontSize: 10,
+        fontWeight: 600,
+        letterSpacing: 0.5,
+        cursor: 'pointer',
       },
     },
   },
   MuiDivider: {
     styleOverrides: {
       light: {
-        background: 'rgba(255, 255, 255, 0.4)',
+        background: theme.palette.primary.light,
       },
       root: {
         background: 'rgba(31, 23, 18, 0.12)',
@@ -209,6 +273,34 @@ theme.components = {
       },
       elevation1: {
         boxShadow: '0px 16px 32px rgba(17, 17, 17, 0.04)',
+      },
+    },
+  },
+  MuiMenu: {
+    styleOverrides: {
+      list: {
+        padding: 0,
+        background: theme.palette.primary.light,
+        border: `1px solid ${theme.palette.text.primary}`,
+        borderRadius: 4,
+        '& li': {
+          fontSize: '.8em',
+          fontWeight: '600 !important',
+          lineHeight: '19.5px',
+          letterSpacing: '1px',
+        },
+        '& .active': {
+          borderRadius: 4,
+          background: theme.palette.background.default,
+          color: theme.palette.text.primary,
+          '&:hover': {
+            background: theme.palette.background.paper,
+            color: theme.palette.text.primary,
+          },
+        },
+      },
+      paper: {
+        boxShadow: 'none !important',
       },
     },
   },
@@ -318,7 +410,7 @@ theme.components = {
     },
     styleOverrides: {
       root: {
-        fontFamily: `'Manrope', sans-serif`,
+        fontFamily: `'Montserrat', sans-serif`,
         fontWeight: 500,
         lineHeight: '120%',
         cursor: 'pointer',
@@ -381,7 +473,7 @@ theme.components = {
       {
         props: { variant: 'filled', color: 'primary', size: 'small' },
         style: {
-          fontFamily: `'Manrope', sans-serif`,
+          fontFamily: `'Montserrat', sans-serif`,
           fontWeight: 700,
           background: theme.palette.primary.main,
           color: theme.palette.primary.contrastText,
@@ -406,7 +498,7 @@ theme.components = {
       {
         props: { variant: 'outlined', color: 'info', size: 'small' },
         style: {
-          fontFamily: `'Manrope', sans-serif`,
+          fontFamily: `'Montserrat', sans-serif`,
           fontWeight: 500,
           height: 'auto',
           border: 'none',

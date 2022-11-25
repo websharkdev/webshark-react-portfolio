@@ -1,30 +1,66 @@
-import { FC, useState } from 'react'
+import { Box, Divider, Grid, Typography, styled } from '@mui/material'
+import Link from 'next/link'
+import { FC, useContext, useEffect, useState } from 'react'
+import { MenuItemProps } from 'shared/types/home'
 
-import MobileMenu from '@/components/layout/header/mobileMenu/MobileMenu'
-import Logo from '@/components/layout/logo/Logo'
-import MenuContainer from '@/components/layout/menuContainer/MenuContainer'
-import menu from '@/components/layout/menuContainer/menu.data'
+import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
-import styles from './header.module.scss'
+import { UserLanguageContext } from '../Layout'
 
-const Header: FC = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+import styles from './header.module.sass'
 
-  const handleBurgerClick = (isOpen: boolean) => {
-    setIsDrawerOpen(isOpen)
-  }
+type Props = {}
+
+const Root = styled(Grid)(({ theme }) => ({
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  flexWrap: 'nowrap',
+  marginBottom: theme.spacing(2),
+}))
+
+const Wrapper = styled(Box)(({ theme }) => ({
+  width: 'calc(100% - 68px)',
+  margin: '0 auto',
+  padding: '34px 0',
+  background: theme.palette.background.default,
+}))
+
+export const Header: FC<Props> = () => {
+  const languageProps = useContext(UserLanguageContext)
+  const [data, setData] = useState(home_dataEN)
+
+  useEffect(() => {
+    switch (languageProps.language) {
+      case 'en':
+        setData(home_dataEN)
+        break
+      case 'ru':
+        setData(home_dataRU)
+        break
+
+      default:
+        break
+    }
+  }, [languageProps.language])
+
+  const { menu, fio } = data
 
   return (
-    <header className={styles.header}>
-      <div className={styles.logoMenu}>
-        <div className={styles.logoMenuContainer}>
-          <Logo />
-        </div>
-        <MenuContainer menu={menu} />
-      </div>
-      <MobileMenu isOpen={isDrawerOpen} handleClose={handleBurgerClick} />
-    </header>
+    <Wrapper>
+      <Root container>
+        {menu.map((item: MenuItemProps) => (
+          <Grid item xs={1} key={item.id} className={`header-menu--item ${styles.headerMenuItem}`}>
+            <Link href={item.link}>{`${item.title}.`}</Link>
+          </Grid>
+        ))}
+        <Grid item flex={1}>
+          <Typography variant="h5" align="right">
+            {fio}
+          </Typography>
+        </Grid>
+      </Root>
+      <Divider light />
+    </Wrapper>
   )
 }
-
-export default Header

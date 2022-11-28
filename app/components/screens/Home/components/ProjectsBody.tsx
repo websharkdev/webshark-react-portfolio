@@ -59,16 +59,7 @@ export const ProjectsBody = ({ data }: Props) => {
           <Grid container wrap="nowrap" direction="column" rowSpacing={4}>
             {project.projects.map((item: ProjectItemProps, id: number) => (
               <Grid item key={item.id} xs={12}>
-                <motion.div
-                  className="card-container"
-                  initial="offscreen"
-                  whileInView="onscreen"
-                  viewport={{ once: false, amount: 0.6 }}
-                >
-                  <motion.div className="card" variants={cardVariants}>
-                    <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
-                  </motion.div>
-                </motion.div>
+                <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
               </Grid>
             ))}
           </Grid>

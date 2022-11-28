@@ -11,6 +11,7 @@ const Root = styled(Grid)(({ theme }) => ({
   background: '#242424',
   position: 'sticky',
   bottom: 0,
+  zIndex: 5,
 }))
 
 export const HelpUkraine = (props: Props) => {

@@ -55,7 +55,7 @@ export type ProjectItemProps = {
   id: number
   title: string
   text: string
-  stack: string
+  stack: string[]
   slider: string[]
   btn: ButtonProps
 }

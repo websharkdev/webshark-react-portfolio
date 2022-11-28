@@ -56,7 +56,7 @@ export type ProjectItemProps = {
   title: string
   text: string
   stack: string
-  slider: any
+  slider: string[]
   btn: ButtonProps
 }
 export type ProjectsPageData = {

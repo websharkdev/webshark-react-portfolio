@@ -93,56 +93,34 @@ export const home_dataEN = {
     projects: [
       {
         id: 0,
-        title: '',
+        title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
-        stack: [],
+        stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
         slider: [],
         btn: {
-          name: '',
+          name: 'check out.',
           link: '',
         },
       },
       {
         id: 1,
-        title: '',
+        title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
-        stack: [],
+        stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
         slider: [],
         btn: {
-          name: '',
+          name: 'check out.',
           link: '',
         },
       },
       {
         id: 2,
-        title: '',
+        title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
-        stack: [],
+        stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
         slider: [],
         btn: {
-          name: '',
-          link: '',
-        },
-      },
-      {
-        id: 3,
-        title: '',
-        text: 'Description of the project, steck which I use, for hwo, when start...',
-        stack: [],
-        slider: [],
-        btn: {
-          name: '',
-          link: '',
-        },
-      },
-      {
-        id: 4,
-        title: '',
-        text: 'Description of the project, steck which I use, for hwo, when start...',
-        stack: [],
-        slider: [],
-        btn: {
-          name: '',
+          name: 'check out.',
           link: '',
         },
       },
@@ -206,6 +184,28 @@ export const home_dataRU = {
     projects: [
       {
         id: 0,
+        title: 'Title of the project',
+        text: 'Description of the project, steck which I use, for hwo, when start...',
+        stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
+        slider: [],
+        btn: {
+          name: 'check out.',
+          link: '',
+        },
+      },
+      {
+        id: 1,
+        title: 'Title of the project',
+        text: 'Description of the project, steck which I use, for hwo, when start...',
+        stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
+        slider: [],
+        btn: {
+          name: 'check out.',
+          link: '',
+        },
+      },
+      {
+        id: 2,
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],

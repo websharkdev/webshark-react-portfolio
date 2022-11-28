@@ -12,7 +12,7 @@ import styles from './layout.module.sass'
 
 interface LanguageContext {
   language: LanguageProps
-  setLanguage: Dispatch<SetStateAction<LanguageProps>>
+  setLanguage: any
   home_data: any
 }
 // @ts-ignore

@@ -7,7 +7,7 @@ import styles from '@/screens/Home/home.module.sass'
 type Props = {
   language: LanguageProps
   languages: LanguageProps[]
-  setLanguage: Dispatch<SetStateAction<LanguageProps>>
+  setLanguage: any
 }
 
 const Root = styled(Menu)(({ theme }) => ({

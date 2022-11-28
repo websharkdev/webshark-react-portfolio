@@ -16,6 +16,9 @@ const Root = styled(Grid)(({ theme }) => ({
   background: theme.palette.primary.light,
   borderRadius: 4,
   minHeight: 825,
+  '&.green ': {
+    background: theme.palette.secondary.light,
+  },
 
   '& .projects-item--content': {
     flexWrap: 'nowrap',
@@ -52,7 +55,6 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const ProjectItem = ({ data, variant }: Props) => {
-  const [stack, setStack] = useState<number>(5)
   const [showAllStack, setShowAllStack] = useState<boolean>(false)
   return (
     <Root container className={variant}>

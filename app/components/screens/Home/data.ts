@@ -96,7 +96,7 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: [],
+        slider: ['string'],
         btn: {
           name: 'check out.',
           link: '',
@@ -107,7 +107,7 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: [],
+        slider: ['string'],
         btn: {
           name: 'check out.',
           link: '',
@@ -118,7 +118,7 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: [],
+        slider: ['string'],
         btn: {
           name: 'check out.',
           link: '',
@@ -198,7 +198,7 @@ export const home_dataRU = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: [],
+        slider: ['string'],
         btn: {
           name: 'check out.',
           link: '',
@@ -209,7 +209,7 @@ export const home_dataRU = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: [],
+        slider: ['string'],
         btn: {
           name: 'check out.',
           link: '',

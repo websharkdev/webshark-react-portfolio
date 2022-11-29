@@ -147,6 +147,17 @@ export const home_dataEN = {
       },
     ],
   },
+
+  contacts: {
+    section: 'contacts.',
+    text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${
+      new Date().getFullYear() - 2003
+    }). During this time, I have implemented dozens of projects, which you can see above.`,
+    btn: {
+      name: 'actual CV.',
+      link: 'alexey.bortnytskyi@gmail.com',
+    },
+  },
 }
 
 export const home_dataRU = {
@@ -258,5 +269,15 @@ export const home_dataRU = {
         },
       },
     ],
+  },
+  contacts: {
+    section: 'контакты.',
+    text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${
+      new Date().getFullYear() - 2003
+    }). During this time, I have implemented dozens of projects, which you can see above.`,
+    btn: {
+      name: 'написать мне.',
+      link: 'alexey.bortnytskyi@gmail.com',
+    },
   },
 }

@@ -65,7 +65,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const Error404: FC = () => (
+const Error404: FC<Props> = () => (
   <Meta title="Page not found">
     <Layout>
       <Box

@@ -65,7 +65,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const Error500: FC = () => (
+const Error500: FC<Props> = () => (
   <Meta title="Server-side error">
     <Layout>
       <Box

@@ -1,9 +1,8 @@
-import { Box, Button, Grid, Link, Typography, styled } from '@mui/material'
+import { Box, Button, Grid, Typography, styled } from '@mui/material'
 import Image from 'next/image'
-import { useContext, useState } from 'react'
-import { ContactsItemProps, DataProps, SocialItemProps } from 'shared/types/home'
+import { DataProps } from 'shared/types/home'
 
-import { UserLanguageContext } from '@/components/layout/Layout'
+import { SocialMedia } from '@/components/layout/SocialMedia'
 
 import { AboutPhoto } from '@/assets/icons/photos'
 
@@ -37,7 +36,6 @@ const Root = styled(Grid)(({ theme }) => ({
       color: theme.palette.text.primary,
     },
     '& .about-content--container-titleBox': {
-      justifyContent: 'flex-end',
       display: 'flex',
       '& .about-content--container-title': {
         fontSize: 96,
@@ -47,24 +45,9 @@ const Root = styled(Grid)(({ theme }) => ({
       },
     },
   },
-  '& .about-content--socials-container': {
-    display: 'flex',
-    marginTop: theme.spacing(2),
-    '& .about-content--socials-item': {
-      marginRight: theme.spacing(2),
-    },
-  },
-  '& .about-content--links-container': {
-    display: 'flex',
-    flexDirection: 'column',
-    '& .about-content--links-item': {
-      marginBottom: theme.spacing(2),
-    },
-  },
 }))
 
 export const AboutBody = ({ data }: Props) => {
-  const { home_data } = useContext(UserLanguageContext)
   const { about } = data
   return (
     <Root container rowSpacing={10}>
@@ -95,36 +78,7 @@ export const AboutBody = ({ data }: Props) => {
           </Grid>
           <Grid item flex={1} />
           <Grid item>
-            <Box className="about-content--container-textDivider" />
-
-            <Box className="about-content--links-container">
-              {home_data.contacts.map((item: ContactsItemProps) => (
-                <Link
-                  href={item.href}
-                  className="about-content--links-item"
-                  key={item.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </Box>
-
-            <Box className="about-content--socials-container">
-              {home_data.socials.map((item: SocialItemProps) => (
-                <Link
-                  href={item.href}
-                  className="about-content--socials-item"
-                  key={item.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* @ts-ignore */}
-                  <Image src={item.icon} alt="social-item--icon" />
-                </Link>
-              ))}
-            </Box>
+            <SocialMedia />
           </Grid>
         </Grid>
       </Grid>

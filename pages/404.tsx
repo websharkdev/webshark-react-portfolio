@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
+import type { NextPage } from 'next'
 import Image from 'next/image'
 
 import Layout from '@/components/layout/Layout'
@@ -6,8 +7,6 @@ import Layout from '@/components/layout/Layout'
 import { HeaderBG } from '@/assets/icons/backgrounds'
 
 import Meta from '@/utils/meta/Meta'
-
-type Props = {}
 
 const Root = styled(Grid)(({ theme }) => ({
   display: 'flex',
@@ -64,7 +63,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const Error404 = (props: Props) => (
+const Error404: NextPage = () => (
   <Meta title="Page not found">
     <Layout>
       <Box

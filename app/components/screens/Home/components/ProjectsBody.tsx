@@ -1,7 +1,4 @@
-// import { useRef } from 'react'import { wrap } from '@motionone/utils'
-import { wrap } from '@motionone/utils'
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
-import { MotionValue, Variants, motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion'
 import { ProjectItemProps } from 'shared/types/home'
 
 import { ProjectItem } from '@/components/projects'
@@ -32,25 +29,16 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const cardVariants: Variants = {
-  offscreen: {
-    y: 300,
-  },
-  onscreen: {
-    y: 50,
-    transition: {
-      type: 'spring',
-      bounce: 0.1,
-      duration: 0.4,
-    },
-  },
-}
-
 export const ProjectsBody = ({ data }: Props) => {
   const { project } = data
 
   return (
-    <Box>
+    <Box
+      sx={{
+        overflow: 'hidden !important',
+        mb: 12,
+      }}
+    >
       <Root container rowSpacing={4}>
         <Grid item xs={12} className="projects-section">
           <Typography variant="h4">{project.section}</Typography>
@@ -59,16 +47,7 @@ export const ProjectsBody = ({ data }: Props) => {
           <Grid container wrap="nowrap" direction="column" rowSpacing={4}>
             {project.projects.map((item: ProjectItemProps, id: number) => (
               <Grid item key={item.id} xs={12}>
-                <motion.div
-                  className="card-container"
-                  initial="offscreen"
-                  whileInView="onscreen"
-                  viewport={{ once: false, amount: 0.6 }}
-                >
-                  <motion.div className="card" variants={cardVariants}>
-                    <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
-                  </motion.div>
-                </motion.div>
+                <ProjectItem data={item} id={id} variant={id % 2 ? 'green' : 'purpule'} />
               </Grid>
             ))}
           </Grid>

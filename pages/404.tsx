@@ -1,11 +1,15 @@
-import { Typography } from '@mui/material'
-import { FC } from 'react'
+import type { NextPage } from 'next'
+
+import Layout from '@/components/layout/Layout'
+import { Body404 } from '@/components/screens/Errors'
 
 import Meta from '@/utils/meta/Meta'
 
-const Error404: FC = () => (
+const Error404: NextPage = () => (
   <Meta title="Page not found">
-    <Typography variant="h1">404 - Page not found</Typography>
+    <Layout>
+      <Body404 />
+    </Layout>
   </Meta>
 )
 

@@ -96,7 +96,14 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
@@ -107,7 +114,14 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
@@ -118,13 +132,31 @@ export const home_dataEN = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
         },
       },
     ],
+  },
+
+  contacts: {
+    section: 'contacts.',
+    text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${
+      new Date().getFullYear() - 2003
+    }). During this time, I have implemented dozens of projects, which you can see above.`,
+    btn: {
+      name: 'actual CV.',
+      link: 'alexey.bortnytskyi@gmail.com',
+    },
   },
 }
 
@@ -156,7 +188,7 @@ export const home_dataRU = {
       title: 'контакты',
     },
   ],
-  fio: 'Бортницкий. Алексей',
+  fio: 'Бортницкий. Алексей.',
   home: {
     sub_title: 'креативный. разработчик',
     text: 'Помогаю компаниям, брендам и предпринимателям разрабатывать любые цифровые продукты и достигать поставленных целей',
@@ -187,7 +219,14 @@ export const home_dataRU = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
@@ -198,7 +237,14 @@ export const home_dataRU = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
@@ -209,12 +255,29 @@ export const home_dataRU = {
         title: 'Title of the project',
         text: 'Description of the project, steck which I use, for hwo, when start...',
         stack: ['react', 'typescript', 'material-ui', 'redux', 'storybook', 'framer'],
-        slider: ['string'],
+        slider: [
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+          'https://images.unsplash.com/photo-1668965521789-f1a13aa4a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80',
+        ],
         btn: {
           name: 'check out.',
           link: '',
         },
       },
     ],
+  },
+  contacts: {
+    section: 'контакты.',
+    text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${
+      new Date().getFullYear() - 2003
+    }). During this time, I have implemented dozens of projects, which you can see above.`,
+    btn: {
+      name: 'написать мне.',
+      link: 'alexey.bortnytskyi@gmail.com',
+    },
   },
 }

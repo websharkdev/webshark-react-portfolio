@@ -6,7 +6,7 @@ import { UserLanguageContext } from '@/components/layout/Layout'
 
 import styles from '@/screens/Home/home.module.sass'
 
-import { AboutBody, HomeBody, HomeScroll, ProjectsBody, StackBody } from './components'
+import { AboutBody, ContactsBody, HomeBody, HomeScroll, ProjectsBody, StackBody } from './components'
 import { home_data, home_dataEN, home_dataRU } from './data'
 
 type Props = {}
@@ -14,7 +14,6 @@ type Props = {}
 const Root = styled(Box)(({ theme }) => ({
   width: 'calc(100% - 68px)',
   margin: '0 auto',
-  minHeight: '7600px',
   '& .home--header': {
     minHeight: '800px',
     paddingTop: '100px',
@@ -80,6 +79,11 @@ export const Home: FC<Props> = (props) => {
       <Box className="home--projects" width="100%">
         <Divider light />
         <ProjectsBody data={home_bodyData} />
+      </Box>
+
+      <Box className="home--contacts" width="100%">
+        <Divider light />
+        <ContactsBody data={home_bodyData} />
       </Box>
     </Root>
   )

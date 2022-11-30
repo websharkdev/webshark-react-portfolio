@@ -1,6 +1,5 @@
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
 import Image from 'next/image'
-import { FC } from 'react'
 
 import Layout from '@/components/layout/Layout'
 
@@ -65,7 +64,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const Error500: FC = (props: Props) => (
+const Error404 = (props: Props) => (
   <Meta title="Page not found">
     <Layout>
       <Box

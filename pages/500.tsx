@@ -63,7 +63,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-const Error500: NextPage = (props) => (
+const Error500: NextPage = () => (
   <Meta title="Server-side error">
     <Layout>
       <Box

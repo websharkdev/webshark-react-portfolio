@@ -12,3 +12,44 @@ body::-webkit-scrollbar {
 html {
     scroll-snap-type: y mandatory;
 }
+
+.scroll-container {
+    position: sticky;
+    left: 0;
+    right: 0;
+    will-change: transform;
+
+}
+
+.ghost {
+    width: 100vw;
+}
+
+.thumbnails-container {
+    position: relative;
+    height: 100vh;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    padding: 0px 160px;
+    background-color: black;
+    border: 40px solid yellowGreen;
+
+}
+
+.thumbnails {
+    position: relative;
+    display: flex;
+    border: 20px solid yellow;
+}
+
+.thumbnails *:not(:last-child) {
+    margin-right: 45px;
+}
+
+.thumbnail {
+    height: 40vh;
+    width: 700px;
+    background-color: royalblue;
+    border: 15px solid magenta;
+}

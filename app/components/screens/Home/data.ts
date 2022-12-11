@@ -36,6 +36,8 @@ export const home_data = {
       icon: GitHubIcon,
     },
   ],
+  mail: 'alexey.bortnytskyi@gmail.com',
+  cv_link: 'https://www.notion.so/CV-d9f17ad32676467f895a71b48974b6ae',
 }
 export const home_dataEN = {
   menu: [
@@ -51,7 +53,7 @@ export const home_dataEN = {
     },
     {
       id: 2,
-      link: '#works',
+      link: '/projects',
       title: 'works',
     },
     {

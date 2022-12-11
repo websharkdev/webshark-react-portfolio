@@ -7,6 +7,7 @@ import { UserLanguageContext } from '../Layout'
 
 type Props = {
   dividerColor?: 'light' | 'default'
+  color?: 'white' | 'default'
 }
 
 const Root = styled(Grid)(({ theme }) => ({
@@ -32,11 +33,17 @@ const Root = styled(Grid)(({ theme }) => ({
     flexDirection: 'column',
     '& .social-media--links-item': {
       marginBottom: theme.spacing(2),
+      '&.white': {
+        color: theme.palette.primary.contrastText,
+      },
+      '&:hover': {
+        color: theme.palette.primary.light,
+      },
     },
   },
 }))
 
-export const SocialMedia = ({ dividerColor = 'default' }: Props) => {
+export const SocialMedia = ({ dividerColor = 'default', color = 'default' }: Props) => {
   const { home_data } = useContext(UserLanguageContext)
   return (
     <Root container flexWrap="nowrap" direction="column">
@@ -46,7 +53,12 @@ export const SocialMedia = ({ dividerColor = 'default' }: Props) => {
         <Grid container flexWrap="nowrap" direction="column" rowSpacing={1}>
           {home_data.contacts.map((item: ContactsItemProps) => (
             <Grid item key={item.id}>
-              <Link href={item.href} className="about-content--links-item" target="_blank" rel="noopener noreferrer">
+              <Link
+                href={item.href}
+                className={`social-media--links-item ${color}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {item.name}
               </Link>
             </Grid>

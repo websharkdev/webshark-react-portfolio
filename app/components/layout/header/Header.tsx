@@ -6,8 +6,7 @@ import { MenuItemProps } from 'shared/types/home'
 import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
 import { UserLanguageContext } from '../Layout'
-
-import styles from './header.module.sass'
+import styles from '../layout.module.sass'
 
 type Props = {}
 
@@ -50,7 +49,7 @@ export const Header: FC<Props> = () => {
     <Wrapper>
       <Root container>
         {menu.map((item: MenuItemProps) => (
-          <Grid item xs={1} key={item.id} className={`header-menu--item ${styles.headerMenuItem}`}>
+          <Grid item xs={1} key={item.id} className={`header-menu--item ${styles.MenuItem}`}>
             <Link href={item.link}>{`${item.title}.`}</Link>
           </Grid>
         ))}

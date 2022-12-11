@@ -54,7 +54,7 @@ export const ProjectsBody = ({ data }: Props) => {
         </Grid>
       </Root>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <Button href="#" size={'medium'}>
+        <Button href="/works" size={'medium'}>
           Show more.
         </Button>
       </Box>

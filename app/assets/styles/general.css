@@ -14,10 +14,11 @@ html {
 }
 
 .scroll-container {
-    position: sticky;
+    position: fixed;
     left: 0;
     right: 0;
     will-change: transform;
+    z-index: -3;
 
 }
 
@@ -32,15 +33,12 @@ html {
     display: flex;
     align-items: center;
     padding: 0px 160px;
-    background-color: black;
-    border: 40px solid yellowGreen;
 
 }
 
 .thumbnails {
     position: relative;
     display: flex;
-    border: 20px solid yellow;
 }
 
 .thumbnails *:not(:last-child) {

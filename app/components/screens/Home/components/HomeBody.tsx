@@ -1,6 +1,8 @@
-import { Box, Button, Grid, Typography, styled } from '@mui/material'
-import Image from 'next/image'
+import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
+import { useWidth } from 'shared/hooks'
 import { DataProps } from 'shared/types/home'
+
+import { PhotoContainer } from '@/components/layout/photoContainer'
 
 import { HeaderBG } from '@/assets/icons/backgrounds'
 import { HeaderPhoto } from '@/assets/icons/photos'
@@ -15,7 +17,10 @@ const Root = styled(Grid)(({ theme }) => ({
   justifyContent: 'space-between',
   position: 'relative',
   height: '100%',
-  minHeight: 550,
+  minHeight: 'calc(100vh - 250px)',
+  [theme.breakpoints.up('md')]: {
+    minHeight: 550,
+  },
   '& .home-body--header-subtitleBox': {
     height: '100%',
     display: 'flex',
@@ -25,43 +30,26 @@ const Root = styled(Grid)(({ theme }) => ({
       maxWidth: 300,
     },
   },
-  '& .home-body--header-fotoBox-container': {
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: -1,
-    width: 540,
-    height: 540,
-    [theme.breakpoints.down('lg')]: {
-      width: 440,
-      height: 440,
-    },
-    '& .home-body--header-fotoBox': {
-      position: 'relative',
-      '& .home-body--header-foto-main': {
-        width: '100%',
-        height: '100%',
-      },
-      '& .home-body--header-foto-rat': {
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        top: 75,
-        left: 75,
-        zIndex: -1,
-      },
-    },
-  },
   '& .home-body--header-titleBox-container': {
     display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
     flexDirection: 'column',
-    height: 'calc(100% + 90px)',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+
+    height: 'max-content',
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'flex-end',
+      alignItems: 'flex-end',
+      height: 'calc(100% + 90px)',
+    },
+
     '& .home-body--header-titleBox': {
       justifyContent: 'flex-end',
+      order: -5,
       display: 'flex',
+      [theme.breakpoints.down('md')]: {
+        marginBottom: theme.spacing(4),
+      },
       '& .home-body--header-title': {
         fontSize: 96,
         fontWeight: 600,
@@ -70,6 +58,10 @@ const Root = styled(Grid)(({ theme }) => ({
         [theme.breakpoints.down('lg')]: {
           fontSize: 64,
           lineHeight: '85px',
+        },
+        [theme.breakpoints.down('md')]: {
+          fontSize: 32,
+          lineHeight: '36px',
         },
       },
     },
@@ -91,24 +83,38 @@ const Root = styled(Grid)(({ theme }) => ({
 
 export const HomeBody = ({ data }: Props) => {
   const { home } = data
+  const currentBreakpoint = useWidth()
+  const tablet = useMediaQuery((theme) =>
+    // @ts-ignore
+    theme.breakpoints.up('md')
+  )
+
   return (
     <Root container>
-      <Grid item lg={4} xl={7}>
-        <Box className="home-body--header-subtitleBox" width="100%">
-          <Typography className="home-body--header-subtitle" variant="h3">
-            {home.sub_title}
-          </Typography>
-        </Box>
-      </Grid>
-      <Box className="home-body--header-fotoBox-container">
-        <Box className="home-body--header-fotoBox" width="100%">
-          <Image src={HeaderPhoto} className="home-body--header-foto-main" alt="home-body--header-foto-subimage" />
-          <Box className="home-body--header-foto-rat">
-            <Image src={HeaderBG} alt="home-body--header-foto-subimage" />
+      {tablet && (
+        <Grid item xs={12} lg={4} xl={7}>
+          <Box className="home-body--header-subtitleBox" width="100%">
+            <Typography className="home-body--header-subtitle" variant="h3">
+              {home.sub_title}
+            </Typography>
           </Box>
-        </Box>
-      </Box>
-      <Grid item lg={7} xl={5}>
+        </Grid>
+      )}
+      <PhotoContainer
+        mainPhoto={HeaderPhoto}
+        photoBG={HeaderBG}
+        size={{
+          xs: [256, 256],
+          md: [320, 320],
+          lg: [500, 500],
+        }}
+        shift={{
+          xs: [24, 24],
+          md: [48, 48],
+          xl: [75, 75],
+        }}
+      />
+      <Grid item sx={{ height: { xs: 'max-content', md: 'auto' } }} xs={12} lg={7} xl={5}>
         <Box className="home-body--header-titleBox-container">
           <Box className="home-body--header-textBox">
             <Box className="home-body--header-textDivider" />
@@ -117,12 +123,14 @@ export const HomeBody = ({ data }: Props) => {
             </Typography>
           </Box>
           <Box className="home-body--header-titleBox">
-            <Typography component="div" width={{ xs: 500, lg: 700 }}>
+            <Typography component="div" width={{ xs: '70%', md: 500, lg: 700 }}>
               <span className="home-body--header-title">{data.fio}</span>
 
-              <Button sx={{ ml: 4, mb: 4 }} size="large" href={`mailto:${home.btn.link}`} variant="contained">
-                {home.btn.name}
-              </Button>
+              {tablet && (
+                <Button sx={{ ml: 4, mb: 4 }} size="large" href={`mailto:${home.btn.link}`} variant="contained">
+                  {home.btn.name}
+                </Button>
+              )}
             </Typography>
           </Box>
         </Box>

@@ -48,6 +48,17 @@ const Root = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down('sm')]: {
     alignItems: 'center',
   },
+  '& h5.header-fio': {
+    [theme.breakpoints.down('lg')]: {
+      fontSize: 18,
+    },
+    [theme.breakpoints.down('md')]: {
+      fontSize: 16,
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 14,
+    },
+  },
 }))
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -55,6 +66,9 @@ const Wrapper = styled(Box)(({ theme }) => ({
   margin: '0 auto',
   padding: '34px 0',
   background: theme.palette.background.default,
+  [theme.breakpoints.down('sm')]: {
+    padding: '24px 0',
+  },
 }))
 
 const Rectangle = ({ position }: any) => {
@@ -197,7 +211,7 @@ export const Header: FC<Props> = () => {
           )}
         </Grid>
         <Grid item flex={1}>
-          <Typography variant="h5" align="right">
+          <Typography variant="h5" align="right" className="header-fio">
             {header_fio}
           </Typography>
         </Grid>

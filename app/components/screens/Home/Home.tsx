@@ -1,5 +1,6 @@
 import { Box, Divider, Grid, Typography, styled } from '@mui/material'
 import { FC, useContext, useEffect, useState } from 'react'
+import { useWidth } from 'shared/hooks'
 import { LanguageProps } from 'shared/types/home'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
@@ -15,8 +16,15 @@ const Root = styled(Box)(({ theme }) => ({
   width: 'calc(100% - 68px)',
   margin: '0 auto',
   '& .home--header': {
-    minHeight: '800px',
-    paddingTop: '100px',
+    [theme.breakpoints.up('md')]: {
+      minHeight: '800px',
+      paddingTop: '100px',
+    },
+    [theme.breakpoints.down('md')]: {
+      minHeight: 'max-content',
+      height: '100%',
+      padding: `${theme.spacing(6)} 0`,
+    },
     position: 'relative',
     '& .left-side': {
       position: 'absolute',
@@ -31,6 +39,7 @@ export const Home: FC<Props> = (props) => {
   const [language, setLanguage] = useState<LanguageProps>('en')
   const [home_bodyData, setHome_bodyData] = useState(home_dataEN)
   const languageProps = useContext(UserLanguageContext)
+  const currentBreakpoint = useWidth()
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -59,9 +68,11 @@ export const Home: FC<Props> = (props) => {
   return (
     <Root className={styles.Wrapper}>
       <Box className="home--header" width="100%">
-        <Box className="left-side">
-          <HomeScroll />
-        </Box>
+        {currentBreakpoint === 'md' || currentBreakpoint === 'lg' || currentBreakpoint === 'xl' ? (
+          <Box className="left-side">
+            <HomeScroll />
+          </Box>
+        ) : null}
         <HomeBody data={home_bodyData} />
       </Box>
 

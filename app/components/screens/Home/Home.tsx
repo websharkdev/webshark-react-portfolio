@@ -38,7 +38,7 @@ export const Home: FC<Props> = (props) => {
       const LSLanguage: LanguageProps = window!.localStorage!.getItem('language_folio')!
       setLanguage(LSLanguage)
     }
-  }, [])
+  }, [languageProps.language])
 
   useEffect(() => {
     languageProps.setLanguage(language)
@@ -60,8 +60,7 @@ export const Home: FC<Props> = (props) => {
     <Root className={styles.Wrapper}>
       <Box className="home--header" width="100%">
         <Box className="left-side">
-          {/* @ts-ignore */}
-          <HomeScroll language={language} languages={home_data.languages} setLanguage={setLanguage} />
+          <HomeScroll />
         </Box>
         <HomeBody data={home_bodyData} />
       </Box>

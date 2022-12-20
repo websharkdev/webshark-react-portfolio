@@ -2,6 +2,7 @@ body {
     -ms-overflow-style: none;
     /* IE and Edge */
     scrollbar-width: none;
+    position: relative;
     /* firefox */
 }
 
@@ -50,4 +51,30 @@ html {
     width: 700px;
     background-color: royalblue;
     border: 15px solid magenta;
+}
+
+
+
+.item {
+    overflow: visible;
+    stroke: #2d2d2d;
+    stroke-width: 2;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+}
+
+.box {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #9381FF;
+    position: absolute;
+    z-index: 300;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    margin-top: 51rem;
 }

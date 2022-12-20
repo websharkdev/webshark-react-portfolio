@@ -31,18 +31,24 @@ const Root = styled(Grid)(({ theme }) => ({
     top: '50%',
     transform: 'translate(-50%, -50%)',
     zIndex: -1,
+    width: 540,
+    height: 540,
+    [theme.breakpoints.down('lg')]: {
+      width: 440,
+      height: 440,
+    },
     '& .home-body--header-fotoBox': {
       position: 'relative',
       '& .home-body--header-foto-main': {
-        width: 540,
-        height: 540,
+        width: '100%',
+        height: '100%',
       },
       '& .home-body--header-foto-rat': {
-        width: 540,
-        height: 540,
+        width: '100%',
+        height: '100%',
         position: 'absolute',
-        top: 65,
-        left: 65,
+        top: 75,
+        left: 75,
         zIndex: -1,
       },
     },
@@ -61,6 +67,10 @@ const Root = styled(Grid)(({ theme }) => ({
         fontWeight: 600,
         letterSpacing: 1.5,
         lineHeight: '135px',
+        [theme.breakpoints.down('lg')]: {
+          fontSize: 64,
+          lineHeight: '85px',
+        },
       },
     },
     '& .home-body--header-textBox': {
@@ -83,7 +93,7 @@ export const HomeBody = ({ data }: Props) => {
   const { home } = data
   return (
     <Root container>
-      <Grid item xs={7}>
+      <Grid item lg={4} xl={7}>
         <Box className="home-body--header-subtitleBox" width="100%">
           <Typography className="home-body--header-subtitle" variant="h3">
             {home.sub_title}
@@ -98,7 +108,7 @@ export const HomeBody = ({ data }: Props) => {
           </Box>
         </Box>
       </Box>
-      <Grid item xs={5}>
+      <Grid item lg={7} xl={5}>
         <Box className="home-body--header-titleBox-container">
           <Box className="home-body--header-textBox">
             <Box className="home-body--header-textDivider" />
@@ -107,7 +117,7 @@ export const HomeBody = ({ data }: Props) => {
             </Typography>
           </Box>
           <Box className="home-body--header-titleBox">
-            <Typography component="div" width={700}>
+            <Typography component="div" width={{ xs: 500, lg: 700 }}>
               <span className="home-body--header-title">{data.fio}</span>
 
               <Button sx={{ ml: 4, mb: 4 }} size="large" href={`mailto:${home.btn.link}`} variant="contained">

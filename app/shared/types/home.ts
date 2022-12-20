@@ -67,6 +67,7 @@ export type ProjectsPageData = {
 export type DataProps = {
   menu: MenuItemProps[]
   fio: string
+  header_fio: string
   home: HomePageData
   about: AboutPageData
   stack: StackPageData

@@ -29,4 +29,14 @@ export const HelpUkraine_data = [
     name: 'How to help army?',
     link: '#',
   },
+  {
+    id: 6,
+    name: 'How to help Ukraine?',
+    link: '#',
+  },
+  {
+    id: 7,
+    name: 'How to help army?',
+    link: '#',
+  },
 ]

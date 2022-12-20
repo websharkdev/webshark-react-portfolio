@@ -68,6 +68,7 @@ export const home_dataEN = {
     },
   ],
   fio: 'Bortnytskyi. Alexey.',
+  header_fio: 'Bortnytskyi Alexey.',
   home: {
     sub_title: 'creative. developer',
     text: 'I help companies, brands and entrepreneurs develop any digital products and achieve their goals',
@@ -191,6 +192,7 @@ export const home_dataRU = {
     },
   ],
   fio: 'Бортницкий. Алексей.',
+  header_fio: 'Бортницкий Алексей.',
   home: {
     sub_title: 'креативный. разработчик',
     text: 'Помогаю компаниям, брендам и предпринимателям разрабатывать любые цифровые продукты и достигать поставленных целей',

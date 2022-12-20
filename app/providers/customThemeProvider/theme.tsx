@@ -243,6 +243,15 @@ theme.components = {
       },
     },
   },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        '&:hover': {
+          background: 'transparent',
+        },
+      },
+    },
+  },
   MuiChip: {
     styleOverrides: {
       root: {

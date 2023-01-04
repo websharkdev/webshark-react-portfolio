@@ -1,5 +1,4 @@
 import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
-import { useWidth } from 'shared/hooks'
 import { DataProps } from 'shared/types/home'
 
 import { PhotoContainer } from '@/components/layout/photoContainer'
@@ -36,11 +35,13 @@ const Root = styled(Grid)(({ theme }) => ({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
 
-    height: 'max-content',
     [theme.breakpoints.up('md')]: {
       justifyContent: 'flex-end',
-      alignItems: 'flex-end',
-      height: 'calc(100% + 90px)',
+      height: '90%',
+    },
+    [theme.breakpoints.down('md')]: {
+      height: 'max-content',
+      justifyContent: 'space-between',
     },
 
     '& .home-body--header-titleBox': {
@@ -55,6 +56,9 @@ const Root = styled(Grid)(({ theme }) => ({
         fontWeight: 600,
         letterSpacing: 1.5,
         lineHeight: '135px',
+        [theme.breakpoints.down('xl')]: {
+          lineHeight: '98px',
+        },
         [theme.breakpoints.down('lg')]: {
           fontSize: 64,
           lineHeight: '85px',
@@ -83,7 +87,6 @@ const Root = styled(Grid)(({ theme }) => ({
 
 export const HomeBody = ({ data }: Props) => {
   const { home } = data
-  const currentBreakpoint = useWidth()
   const tablet = useMediaQuery((theme) =>
     // @ts-ignore
     theme.breakpoints.up('md')
@@ -105,8 +108,8 @@ export const HomeBody = ({ data }: Props) => {
         photoBG={HeaderBG}
         size={{
           xs: [256, 256],
-          md: [320, 320],
-          lg: [500, 500],
+          sm: [440, 440],
+          md: [500, 500],
         }}
         shift={{
           xs: [24, 24],

@@ -1,45 +1,45 @@
-import { UserLanguageContext } from "../Layout";
-import { home_data } from "@/components/screens/Home/data";
-import { Box, Button, Menu, MenuItem, styled } from "@mui/material";
-import { useContext, useState } from "react";
+import { Box, Button, Menu, MenuItem, styled } from '@mui/material'
+import { memo, useContext, useState } from 'react'
 
-type Props = {};
+import { home_data } from '@/components/screens/Home/data'
+
+import { UserLanguageContext } from '../Layout'
 
 const Root = styled(Menu)(({ theme }) => ({
-  "& li.language_menu--item-active": {
+  '& li.language_menu--item-active': {
     color: theme.palette.primary.contrastText,
     background: theme.palette.primary.dark,
     fontWeight: 600,
   },
-  "& li.language_menu--item": {
+  '& li.language_menu--item': {
     color: theme.palette.text.primary,
     fontWeight: 400,
   },
-}));
+}))
 
-const LanguageHandler = (props: Props) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const languageProps = useContext(UserLanguageContext);
-  const open = Boolean(anchorEl);
+const LanguageHandler = memo(() => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const languageProps = useContext(UserLanguageContext)
+  const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
-  const { languages } = home_data;
+  const { languages } = home_data
 
   return (
-    <Box width={"100%"}>
+    <Box width={'100%'}>
       <Button
-        sx={{ minWidth: "max-content" }}
+        sx={{ minWidth: 'max-content' }}
         disableRipple
         variant="contained"
         className="unStyled"
         onClick={handleClick}
       >
-        {languageProps.language ? languageProps.language : "en"}
+        {languageProps.language ? languageProps.language : 'en'}
       </Button>
       <Root
         id="language_menu"
@@ -47,27 +47,25 @@ const LanguageHandler = (props: Props) => {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          'aria-labelledby': 'basic-button',
         }}
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
+          vertical: 'top',
+          horizontal: 'center',
         }}
       >
         {languages.map((item, id) => (
           <MenuItem
             onClick={() => {
-              languageProps.setLanguage(item);
-              window.localStorage.setItem("language_folio", item);
-              setAnchorEl(null);
+              languageProps.setLanguage(item)
+              window.localStorage.setItem('language_folio', item)
+              setAnchorEl(null)
             }}
-            className={`language_menu--item ${
-              item === languageProps.language ? "active" : ""
-            }`}
+            className={`language_menu--item ${item === languageProps.language ? 'active' : ''}`}
             key={id}
           >
             {item}
@@ -75,7 +73,7 @@ const LanguageHandler = (props: Props) => {
         ))}
       </Root>
     </Box>
-  );
-};
+  )
+})
 
-export default LanguageHandler;
+export default LanguageHandler

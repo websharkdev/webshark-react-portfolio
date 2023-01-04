@@ -22,6 +22,12 @@ const Root = styled(Grid)(({ theme }) => ({
     flexDirection: 'column',
     flexWrap: 'nowrap',
     width: 700,
+    [theme.breakpoints.down('lg')]: {
+      width: 500,
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
     height: '100%',
     marginLeft: 'auto',
     '& .about-content--container-textDivider': {
@@ -33,6 +39,12 @@ const Root = styled(Grid)(({ theme }) => ({
     },
     '& .about-content--container-text': {
       width: 540,
+      [theme.breakpoints.down('lg')]: {
+        width: 420,
+      },
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+      },
       color: theme.palette.text.primary,
     },
     '& .about-content--container-titleBox': {
@@ -42,6 +54,21 @@ const Root = styled(Grid)(({ theme }) => ({
         fontWeight: 600,
         letterSpacing: 1.5,
         lineHeight: '135px',
+        [theme.breakpoints.down('xl')]: {
+          fontSize: 64,
+          lineHeight: '68px',
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: 42,
+          lineHeight: '52px',
+        },
+      },
+      '& .about-content--container-btn': {
+        [theme.breakpoints.down('md')]: {
+          height: 35,
+          minWidth: 136,
+          fontSize: '.8em',
+        },
       },
     },
   },
@@ -54,11 +81,11 @@ export const AboutBody = ({ data }: Props) => {
       <Grid item xs={12} className="about-section">
         <Typography variant="h4">{about.section}</Typography>
       </Grid>
-      <Grid item xs={7} className="about-photo--container">
+      <Grid item xs={12} md={6} xl={7} className="about-photo--container">
         <Image src={AboutPhoto} alt="about me photo" />
       </Grid>
-      <Grid item xs={5}>
-        <Grid container direction={'column'} className="about-content--container">
+      <Grid item xs={12} md={5} ml={{ xs: 0, sm: 5, xl: 0 }} xl={5}>
+        <Grid container direction={'column'} className="about-content--container" rowSpacing={3}>
           <Grid item>
             <Box className="about-content--container-textDivider" />
             <Typography className="about-content--container-text" variant="body2">
@@ -67,10 +94,16 @@ export const AboutBody = ({ data }: Props) => {
           </Grid>
           <Grid item className="about-content--container-titleBox">
             <Box className="about-content--container-titleBox">
-              <Typography component="div" width={700}>
+              <Typography component="div" width={{ xs: '80%', lg: '70%', xl: 700 }}>
                 <span className="about-content--container-title">{data.fio}</span>
 
-                <Button sx={{ ml: 4, mb: 4 }} size="large" href={about.btn.link} variant="contained">
+                <Button
+                  sx={{ ml: { xs: 2, md: 4 }, mb: { xs: 0, md: 4 } }}
+                  size="large"
+                  className="about-content--container-btn"
+                  href={about.btn.link}
+                  variant="contained"
+                >
                   {about.btn.name}
                 </Button>
               </Typography>

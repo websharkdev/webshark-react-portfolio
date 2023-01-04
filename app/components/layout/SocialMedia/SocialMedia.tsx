@@ -1,6 +1,6 @@
 import { Grid, Link, styled } from '@mui/material'
 import Image from 'next/image'
-import { useContext } from 'react'
+import { memo, useContext } from 'react'
 import { ContactsItemProps, SocialItemProps } from 'shared/types/home'
 
 import { UserLanguageContext } from '../Layout'
@@ -43,7 +43,7 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const SocialMedia = ({ dividerColor = 'default', color = 'default' }: Props) => {
+export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }: Props) => {
   const { home_data } = useContext(UserLanguageContext)
   return (
     <Root container flexWrap="nowrap" direction="column">
@@ -86,4 +86,4 @@ export const SocialMedia = ({ dividerColor = 'default', color = 'default' }: Pro
       </Grid>
     </Root>
   )
-}
+})

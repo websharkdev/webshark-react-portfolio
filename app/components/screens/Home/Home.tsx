@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Typography, styled } from '@mui/material'
+import { Box, Divider, styled } from '@mui/material'
 import { FC, useContext, useEffect, useState } from 'react'
 import { useWidth } from 'shared/hooks'
 import { LanguageProps } from 'shared/types/home'
@@ -8,7 +8,7 @@ import { UserLanguageContext } from '@/components/layout/Layout'
 import styles from '@/screens/Home/home.module.sass'
 
 import { AboutBody, ContactsBody, HomeBody, HomeScroll, ProjectsBody, StackBody } from './components'
-import { home_data, home_dataEN, home_dataRU } from './data'
+import { home_dataEN, home_dataRU } from './data'
 
 type Props = {}
 
@@ -17,6 +17,7 @@ const Root = styled(Box)(({ theme }) => ({
   margin: '0 auto',
   '& .home--header': {
     [theme.breakpoints.up('md')]: {
+      height: 'calc(100vh - 175px)',
       minHeight: '800px',
       paddingTop: '100px',
     },

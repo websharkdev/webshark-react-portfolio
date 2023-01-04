@@ -47,7 +47,7 @@ export const ProjectsBody = ({ data }: Props) => {
           <Grid container wrap="nowrap" direction="column" rowSpacing={4}>
             {project.projects.map((item: ProjectItemProps, id: number) => (
               <Grid item key={item.id} xs={12}>
-                <ProjectItem data={item} id={id} variant={id % 2 ? 'green' : 'purpule'} />
+                <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
               </Grid>
             ))}
           </Grid>

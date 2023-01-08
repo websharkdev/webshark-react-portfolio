@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { FC, useContext, useEffect, useState } from 'react'
 import { MenuItemProps } from 'shared/types/home'
 
-import { home_data, home_dataEN, home_dataRU } from '@/components/screens/Home/data'
+import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
-import { GitHubIcon, InstagramIcon, TelegramIcon, buyMeACoffeQR } from '@/assets/icons/ui'
+import { buyMeACoffeQR } from '@/assets/icons/ui'
 
 import { UserLanguageContext } from '../Layout'
 import { SocialMedia } from '../SocialMedia'
@@ -126,7 +126,9 @@ export const Footer: FC = (props: Props) => {
           <SocialMedia color="white" dividerColor="light" />
           <Grid item xs={12}>
             <Box className="footer-rightSide--qrcodeBox">
-              <Image width="95px" height="95px" src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
+              <Link href="https://www.buymeacoffee.com/webshark">
+                <Image width="95px" height="95px" src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
+              </Link>
             </Box>
           </Grid>
         </Grid>

@@ -1,4 +1,5 @@
 import { Grid, Typography, styled } from '@mui/material'
+import { useInView } from 'react-intersection-observer'
 import { ParallaxText } from 'shared/hooks/useTextScrolling'
 import { DataProps } from 'shared/types/home'
 
@@ -15,15 +16,20 @@ const Root = styled(Grid)(({ theme }) => ({
 
 export const StackBody = ({ data }: Props) => {
   const { stack } = data
+  const [ref, inView] = useInView()
 
   return (
-    <Root container rowSpacing={10}>
+    <Root container rowSpacing={10} ref={ref}>
       <Grid item xs={12} className="stack-section">
         <Typography variant="h4">{stack.section}</Typography>
       </Grid>
       <Grid item xs={12} className="stack-section">
-        <ParallaxText baseVelocity={0.5}>{stack.tech_stack}</ParallaxText>
-        <ParallaxText baseVelocity={-0.5}>{stack.tech_stack}</ParallaxText>
+        <ParallaxText baseVelocity={0.5} inView={inView}>
+          {stack.tech_stack}
+        </ParallaxText>
+        <ParallaxText baseVelocity={-0.5} inView={inView}>
+          {stack.tech_stack}
+        </ParallaxText>
       </Grid>
     </Root>
   )

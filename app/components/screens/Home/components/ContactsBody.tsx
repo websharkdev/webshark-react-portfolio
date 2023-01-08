@@ -1,7 +1,7 @@
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
-import Image from 'next/image'
 
 import { SocialMedia } from '@/components/layout/SocialMedia'
+import { PhotoContainer } from '@/components/layout/photoContainer'
 
 import { ContactsBG } from '@/assets/icons/backgrounds'
 import { ContactsPhoto } from '@/assets/icons/photos'
@@ -19,6 +19,17 @@ const Root = styled(Grid)(({ theme }) => ({
       fontWeight: 600,
       letterSpacing: 1.5,
       lineHeight: '135px',
+      [theme.breakpoints.down('xl')]: {
+        lineHeight: '98px',
+      },
+      [theme.breakpoints.down('lg')]: {
+        fontSize: 64,
+        lineHeight: '85px',
+      },
+      [theme.breakpoints.down('md')]: {
+        fontSize: 32,
+        lineHeight: '36px',
+      },
     },
   },
   '& .contacts-body--textDivider': {
@@ -28,47 +39,33 @@ const Root = styled(Grid)(({ theme }) => ({
     height: 2,
     background: theme.palette.primary.dark,
   },
-  '& .contacts-photo--container': {
-    position: 'relative',
-    width: 537,
-    height: 748,
-    '& .contacts-photo--container-bg': {
-      width: 540,
-      height: 540,
-      position: 'absolute',
-      left: -61,
-      top: 71,
-      zIndex: -1,
-    },
-  },
 }))
 
 export const ContactsBody = ({ data }: Props) => {
   const { contacts } = data
+
   return (
     <Root container rowSpacing={12} alignItems="center">
       <Grid item xs={12}>
         <Typography variant="h3">{contacts.section}</Typography>
       </Grid>
-      <Grid
-        item
-        xs={5}
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Box className="contacts-photo--container">
-          <Box className="contacts-photo--container-main">
-            <Image src={ContactsPhoto} height={748} width={537} />
-          </Box>
-          <Box className="contacts-photo--container-bg">
-            <Image src={ContactsBG} />
-          </Box>
-        </Box>
+      <Grid item lg={5} xs={12}>
+        <PhotoContainer
+          mainPhoto={ContactsPhoto}
+          photoBG={ContactsBG}
+          size={{
+            xs: [256, 256],
+            sm: [440, 440],
+            md: [537, 537],
+          }}
+          shift={{
+            xs: [24, 24],
+            md: [48, 48],
+            xl: [75, 75],
+          }}
+        />
       </Grid>
-      <Grid item xs={5}>
+      <Grid item xs={12} md={5}>
         <Grid container rowSpacing={4} direction="column" wrap="nowrap">
           <Grid item>
             <Box className="contacts-body--textDivider" />
@@ -78,7 +75,7 @@ export const ContactsBody = ({ data }: Props) => {
           </Grid>
           <Grid item>
             <Box className="contacts-body--titleBox">
-              <Typography component="div" width={700}>
+              <Typography component="div" width={{ xs: '70%', md: 500, lg: 700 }}>
                 <span className="contacts-body--title">{data.fio}</span>
 
                 <Button sx={{ ml: 4, mb: 4 }} size="large" href={`mailto:${contacts.btn.link}`} variant="contained">

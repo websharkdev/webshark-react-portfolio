@@ -15,6 +15,7 @@ interface ParallaxProps {
   children: string
   baseVelocity: number
   fontSize?: number
+  inView?: boolean
 }
 
 const ParallaxBody = styled(Box)(({ theme }) => ({
@@ -44,7 +45,7 @@ const ParallaxBody = styled(Box)(({ theme }) => ({
   },
 }))
 
-export const ParallaxText = memo(({ children, baseVelocity = 100, fontSize }: ParallaxProps) => {
+export const ParallaxText = memo(({ children, baseVelocity = 100, fontSize, inView }: ParallaxProps) => {
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)
@@ -71,14 +72,23 @@ export const ParallaxText = memo(({ children, baseVelocity = 100, fontSize }: Pa
     baseX.set(baseX.get() + moveBy)
   })
 
+  const NumberOfSpan = 12 // Number of span (how many it's will repeat)
+
   return (
     <ParallaxBody className="parallax">
-      <motion.div className="scroller" style={{ x, fontSize: `${fontSize}px` }}>
-        <span>{children}</span>
-        <span>{children}</span>
-        <span>{children}</span>
-        <span>{children}</span>
-      </motion.div>
+      {inView ? (
+        <motion.div className="scroller" style={{ x, fontSize: `${fontSize}px` }}>
+          {[...Array(NumberOfSpan)].map((e, i) => (
+            <span key={i}>{children}</span>
+          ))}
+        </motion.div>
+      ) : (
+        <div className="scroller" style={{ fontSize: `${fontSize}px` }}>
+          {[...Array(NumberOfSpan)].map((e, i) => (
+            <span key={i}>{children}</span>
+          ))}
+        </div>
+      )}
     </ParallaxBody>
   )
 })

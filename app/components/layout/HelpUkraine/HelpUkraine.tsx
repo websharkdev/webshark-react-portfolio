@@ -1,5 +1,6 @@
 import { Grid, Link, styled, useMediaQuery } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import { ParallaxText } from 'shared/hooks/useTextScrolling'
 
 import { HelpUkraine_data } from './data'
@@ -16,11 +17,12 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const HelpUkraine = (props: Props) => {
+  const [ref, inView] = useInView()
   return (
-    <Root container flexWrap="nowrap" alignItems={'center'} justifyContent="space-between">
+    <Root container flexWrap="nowrap" alignItems={'center'} justifyContent="space-between" ref={ref}>
       <Grid item xs={12}>
         <Link href={HelpUkraine_data.url} className={`${styles.HelpUkraine_title}`}>
-          <ParallaxText baseVelocity={0.5} fontSize={18}>
+          <ParallaxText baseVelocity={0.5} fontSize={18} inView={inView}>
             {HelpUkraine_data.text}
           </ParallaxText>
         </Link>

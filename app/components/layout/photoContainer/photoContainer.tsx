@@ -37,13 +37,9 @@ const Root = styled(Grid)(({ theme }) => ({
   height: '100%',
   '& .photo-container--box': {
     position: 'relative',
-    '& .photo-container--box-main': {
-      width: '100%',
-      height: '100%',
-    },
+    width: '100%',
+    height: '100%',
     '& .photo-container--box-subimage': {
-      width: '100%',
-      height: '100%',
       position: 'absolute',
       zIndex: -1,
     },
@@ -69,11 +65,13 @@ export const PhotoContainer = ({ mainPhoto, photoBG, size, shift }: Props) => {
         xl: size?.xl && size.xl[1],
       }}
     >
-      <Box className="photo-container--box" width="100%">
-        <Image src={mainPhoto} className="photo-container--box-main" alt="main_image" />
+      <Box className="photo-container--box" width="100%" height="100%">
+        <img src={mainPhoto} width="100%" height="100%" alt="main_image" />
         <Box
           className="photo-container--box-subimage"
           sx={{
+            width: '100%',
+            height: '100%',
             top: {
               xs: shift?.xs ? shift.xs[1] : 75,
               sm: shift?.sm && shift.sm[1],
@@ -90,7 +88,7 @@ export const PhotoContainer = ({ mainPhoto, photoBG, size, shift }: Props) => {
             },
           }}
         >
-          <Image src={photoBG} alt="sub_image" />
+          <img src={photoBG} alt="sub_image" width="100%" height="100%" />
         </Box>
       </Box>
     </Root>

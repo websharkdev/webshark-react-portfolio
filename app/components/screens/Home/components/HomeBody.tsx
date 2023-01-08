@@ -70,6 +70,10 @@ const Root = styled(Grid)(({ theme }) => ({
       },
     },
     '& .home-body--header-textBox': {
+      marginTop: theme.spacing(2),
+      [theme.breakpoints.down('lg')]: {
+        marginTop: 0,
+      },
       '& .home-body--header-textDivider': {
         width: '100%',
         maxWidth: 120,

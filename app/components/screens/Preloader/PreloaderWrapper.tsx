@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, styled } from '@mui/material'
+import { Grid, Typography, styled } from '@mui/material'
 
 type Props = {}
 
@@ -22,8 +22,10 @@ export const PreloaderWrapper = (props: Props) => {
   return (
     <Root container>
       <Grid item className="preloader-container" xs={12}>
-        <Typography variant="h3" className="preloader-title">
-          Bortnytskyi. Alexey.
+        <Typography variant="h3" className="preloader-title" mr={4}>
+          Bortnytskyi.
+          <br />
+          Alexey.
         </Typography>
       </Grid>
     </Root>

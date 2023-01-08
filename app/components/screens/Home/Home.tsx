@@ -14,6 +14,9 @@ type Props = {}
 
 const Root = styled(Box)(({ theme }) => ({
   width: 'calc(100% - 68px)',
+  [theme.breakpoints.down('md')]: {
+    width: 'calc(100% - 42px)',
+  },
   margin: '0 auto',
   '& .home--header': {
     [theme.breakpoints.up('md')]: {

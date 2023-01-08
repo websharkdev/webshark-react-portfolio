@@ -44,6 +44,7 @@ const Root = styled(Grid)(({ theme }) => ({
       },
       [theme.breakpoints.down('md')]: {
         width: '100%',
+        fontSize: 12,
       },
       color: theme.palette.text.primary,
     },
@@ -94,7 +95,7 @@ export const AboutBody = ({ data }: Props) => {
           </Grid>
           <Grid item className="about-content--container-titleBox">
             <Box className="about-content--container-titleBox">
-              <Typography component="div" width={{ xs: '80%', lg: '70%', xl: 700 }}>
+              <Typography component="div" width={{ xs: '100%', md: '80%', lg: '70%', xl: 700 }}>
                 <span className="about-content--container-title">{data.fio}</span>
 
                 <Button

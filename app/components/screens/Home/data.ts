@@ -13,11 +13,11 @@ export const home_data = {
       name: '34 680 522 262',
       href: 'tel:34680522262',
     },
-    {
-      id: 2,
-      name: 'reacthero.blog',
-      href: 'https://google.com',
-    },
+    // {
+    //   id: 2,
+    //   name: 'reacthero.blog',
+    //   href: 'https://google.com',
+    // },
   ],
   socials: [
     {

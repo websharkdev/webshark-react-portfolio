@@ -20,6 +20,9 @@ type Props = {
 
 const Root = styled(Grid)(({ theme }) => ({
   padding: `${theme.spacing(7)} 0`,
+  [theme.breakpoints.down('md')]: {
+    padding: `${theme.spacing(3)} 0`,
+  },
   background: theme.palette.primary.light,
   borderRadius: 4,
   height: 'max-content',
@@ -28,6 +31,10 @@ const Root = styled(Grid)(({ theme }) => ({
   },
   '& .projects-item--photo': {
     padding: `0 ${theme.spacing(4)}`,
+
+    [theme.breakpoints.down('md')]: {
+      padding: `0 ${theme.spacing(2)}`,
+    },
     height: '100%',
     '& img': {
       width: `100%`,
@@ -44,11 +51,16 @@ const Root = styled(Grid)(({ theme }) => ({
     margin: 'auto',
     paddingRight: theme.spacing(6),
     [theme.breakpoints.down('md')]: {
-      padding: `0 ${theme.spacing(6)}`,
+      height: 'max-content',
+      padding: `0 ${theme.spacing(3)}`,
       marginTop: theme.spacing(3),
     },
     '& .projects-item--content-titleContainer': {
       paddingTop: 0,
+      '& .projects-item--content-title': {
+        fontSize: '1.5em',
+        letterSpacing: '0.5px',
+      },
     },
     '& .projects-item--content-textContainer': {
       width: '100%',
@@ -58,6 +70,10 @@ const Root = styled(Grid)(({ theme }) => ({
         marginBottom: theme.spacing(3),
         height: 2,
         background: theme.palette.primary.dark,
+      },
+      '& .projects-item--content-text': {
+        fontSize: 12,
+        letterSpacing: '0.5px',
       },
     },
     '& .projects-item--content-stackContainer': {
@@ -112,7 +128,7 @@ export const ProjectItem = ({ data, variant }: Props) => {
           </Swiper>
         </Grid>
         <Grid item xs={12} lg={4}>
-          <Grid container rowSpacing={4} className="projects-item--content">
+          <Grid container rowSpacing={{ xs: 2, md: 4 }} className="projects-item--content">
             <Grid item className="projects-item--content-titleContainer">
               <Typography variant="h3" className="projects-item--content-title">
                 {data.title}
@@ -124,7 +140,7 @@ export const ProjectItem = ({ data, variant }: Props) => {
                 {data.text}
               </Typography>
             </Grid>
-            <Grid item xs={10} sx={{ flex: '1 !important' }} className="projects-item--content-stackContainer">
+            <Grid item xs={12} md={10} sx={{ flex: '1 !important' }} className="projects-item--content-stackContainer">
               <Grid
                 container
                 rowSpacing={1.5}

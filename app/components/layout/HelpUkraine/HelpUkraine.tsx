@@ -1,28 +1,30 @@
-import { Grid, Link, Typography, styled } from '@mui/material'
-import React from 'react'
+import { Box, styled } from '@mui/material'
+import { useInView } from 'react-intersection-observer'
+import { ParallaxLink } from 'shared/hooks'
 
 import { HelpUkraine_data } from './data'
-import styles from './helpUkraine.module.sass'
 
-type Props = {}
-
-const Root = styled(Grid)(({ theme }) => ({
-  padding: '13px 34px',
+const Root = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexWrap: 'nowrap',
+  padding: `${theme.spacing(1.5)} ${theme.spacing(3.5)}`,
+  [theme.breakpoints.down('md')]: {
+    padding: `${theme.spacing(1.5)} ${theme.spacing(2)}`,
+  },
   background: '#242424',
-  position: 'sticky',
-  bottom: 0,
+  height: 'max-content',
+  '& a': {
+    color: theme.palette.primary.contrastText,
+  },
 }))
 
-export const HelpUkraine = (props: Props) => {
+export const HelpUkraine = () => {
+  const [innerRef, inView] = useInView()
   return (
-    <Root container flexWrap="nowrap" alignItems={'center'} justifyContent="space-between">
-      {HelpUkraine_data.map((item) => (
-        <Grid item xs={2} key={item.id}>
-          <Link href={item.link} className={`${styles.HelpUkraine_title}`}>
-            {item.name}
-          </Link>
-        </Grid>
-      ))}
+    <Root ref={innerRef}>
+      <ParallaxLink data={HelpUkraine_data} baseVelocity={-0.05} fontSize={18} inView={inView} />
     </Root>
   )
 }

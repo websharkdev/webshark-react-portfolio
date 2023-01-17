@@ -1,3 +1,5 @@
+import { ImageProps } from 'next/image'
+
 export interface Image {
   src: string
   alt: string
@@ -63,12 +65,54 @@ export type ProjectsPageData = {
   section: string
   projects: ProjectItemProps[]
 }
+export type WorkHistoryItemProps = {
+  id: number
+  title: string
+  started: Date | number
+  ended: Date | number
+}
+
+export type WorkHistoryProps = {
+  section: string
+  text: string
+  history: WorkHistoryItemProps[]
+}
 
 export type DataProps = {
   menu: MenuItemProps[]
   fio: string
+  header_fio: string
   home: HomePageData
   about: AboutPageData
+  personal_info: any
+  work_history: WorkHistoryProps
   stack: StackPageData
   project: ProjectsPageData
+}
+
+export type ImagePositionProps = 'default' | 'unStyled' | 'block' | 'background'
+
+export type ImageSizeProps = {
+  xs?: number[]
+  sm?: number[]
+  md?: number[]
+  lg?: number[]
+  xl?: number[]
+}
+
+export type ImageShiftProps = {
+  xs?: number[]
+  sm?: number[]
+  md?: number[]
+  lg?: number[]
+  xl?: number[]
+}
+
+export type PhotoContainerProps = {
+  mainPhoto?: ImageProps
+  photoBG?: ImageProps
+  position?: 'default' | 'unStyled' | 'block' | 'background'
+  size?: ImageSizeProps
+  shift?: ImageShiftProps
+  className?: string
 }

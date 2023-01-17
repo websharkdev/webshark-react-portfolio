@@ -1,9 +1,8 @@
-import { Box, Button, Grid, Link, Typography, styled } from '@mui/material'
-import Image from 'next/image'
-import { useContext, useState } from 'react'
-import { ContactsItemProps, DataProps, SocialItemProps } from 'shared/types/home'
+import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
+import { DataProps } from 'shared/types/home'
 
-import { UserLanguageContext } from '@/components/layout/Layout'
+import { SocialMedia } from '@/components/layout/SocialMedia'
+import { PhotoContainer } from '@/components/layout/photoContainer'
 
 import { AboutPhoto } from '@/assets/icons/photos'
 
@@ -12,7 +11,8 @@ type Props = {
 }
 
 const Root = styled(Grid)(({ theme }) => ({
-  padding: `${theme.spacing(12)} 0`,
+  paddingBottom: theme.spacing(12),
+  justifyContent: 'space-between',
   '& .about-photo--container': {
     display: 'flex',
     justifyContent: 'center',
@@ -22,60 +22,79 @@ const Root = styled(Grid)(({ theme }) => ({
     justifyContent: 'center',
     flexDirection: 'column',
     flexWrap: 'nowrap',
-    width: 700,
+    width: '100%',
     height: '100%',
-    marginLeft: 'auto',
+    [theme.breakpoints.up('lg')]: {
+      width: 'calc(100% - 45px)',
+      marginLeft: 'auto',
+    },
     '& .about-content--container-textDivider': {
       width: '100%',
       maxWidth: 120,
       marginBottom: theme.spacing(3),
       height: 2,
       background: theme.palette.primary.dark,
+      [theme.breakpoints.down('md')]: {
+        maxWidth: 64,
+      },
     },
     '& .about-content--container-text': {
       width: 540,
+      [theme.breakpoints.down('lg')]: {
+        width: 420,
+      },
+      [theme.breakpoints.down('md')]: {
+        width: '100%',
+        fontSize: 12,
+      },
       color: theme.palette.text.primary,
     },
     '& .about-content--container-titleBox': {
-      justifyContent: 'flex-end',
       display: 'flex',
       '& .about-content--container-title': {
-        fontSize: 96,
-        fontWeight: 600,
-        letterSpacing: 1.5,
-        lineHeight: '135px',
+        [theme.breakpoints.down('lg')]: {
+          marginRight: theme.spacing(2),
+        },
+        [theme.breakpoints.down('md')]: {
+          marginRight: theme.spacing(1),
+        },
+        [theme.breakpoints.down('sm')]: {
+          marginRight: theme.spacing(2),
+        },
+        [theme.breakpoints.down(490)]: {
+          marginRight: theme.spacing(2),
+        },
       },
-    },
-  },
-  '& .about-content--socials-container': {
-    display: 'flex',
-    marginTop: theme.spacing(2),
-    '& .about-content--socials-item': {
-      marginRight: theme.spacing(2),
-    },
-  },
-  '& .about-content--links-container': {
-    display: 'flex',
-    flexDirection: 'column',
-    '& .about-content--links-item': {
-      marginBottom: theme.spacing(2),
     },
   },
 }))
 
 export const AboutBody = ({ data }: Props) => {
-  const { home_data } = useContext(UserLanguageContext)
   const { about } = data
+  const tablet = useMediaQuery((theme) =>
+    // @ts-ignore
+    theme.breakpoints.down('md')
+  )
+
   return (
-    <Root container rowSpacing={10}>
+    <Root container rowSpacing={{ xs: 5, md: 10 }} columnSpacing={{ xs: 0, sm: 5, md: 0 }}>
       <Grid item xs={12} className="about-section">
-        <Typography variant="h4">{about.section}</Typography>
+        <Typography variant="h3">{about.section}</Typography>
       </Grid>
-      <Grid item xs={7} className="about-photo--container">
-        <Image src={AboutPhoto} alt="about me photo" />
+      <Grid item xs={12} md={6} xl={5} className="about-photo--container">
+        <PhotoContainer
+          mainPhoto={AboutPhoto}
+          position="block"
+          size={{
+            xs: [256, 368],
+            sm: [440, 552],
+            md: [500, 612],
+            lg: [612, 724],
+          }}
+        />
       </Grid>
-      <Grid item xs={5}>
-        <Grid container direction={'column'} className="about-content--container">
+      <Grid item xs={12} md={6} xl={5} width="min-content">
+        <Grid container direction={'column'} className="about-content--container" rowSpacing={3}>
           <Grid item>
             <Box className="about-content--container-textDivider" />
             <Typography className="about-content--container-text" variant="body2">
@@ -84,10 +103,17 @@ export const AboutBody = ({ data }: Props) => {
           </Grid>
           <Grid item className="about-content--container-titleBox">
             <Box className="about-content--container-titleBox">
-              <Typography component="div" width={700}>
-                <span className="about-content--container-title">{data.fio}</span>
+              <Typography component="div" width={{ xs: '100%', lg: '100%' }}>
+                <Typography variant="h1" component={'span'} className="about-content--container-title">
+                  {data.fio}
+                </Typography>
 
-                <Button sx={{ ml: 4, mb: 4 }} size="large" href={about.btn.link} variant="contained">
+                <Button
+                  size={tablet ? 'medium' : 'large'}
+                  className="about-content--container-btn"
+                  href={about.btn.link}
+                  variant="contained"
+                >
                   {about.btn.name}
                 </Button>
               </Typography>
@@ -95,36 +121,7 @@ export const AboutBody = ({ data }: Props) => {
           </Grid>
           <Grid item flex={1} />
           <Grid item>
-            <Box className="about-content--container-textDivider" />
-
-            <Box className="about-content--links-container">
-              {home_data.contacts.map((item: ContactsItemProps) => (
-                <Link
-                  href={item.href}
-                  className="about-content--links-item"
-                  key={item.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </Box>
-
-            <Box className="about-content--socials-container">
-              {home_data.socials.map((item: SocialItemProps) => (
-                <Link
-                  href={item.href}
-                  className="about-content--socials-item"
-                  key={item.id}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {/* @ts-ignore */}
-                  <Image src={item.icon} alt="social-item--icon" />
-                </Link>
-              ))}
-            </Box>
+            <SocialMedia />
           </Grid>
         </Grid>
       </Grid>

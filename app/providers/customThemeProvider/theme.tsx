@@ -243,6 +243,15 @@ theme.components = {
       },
     },
   },
+  MuiIconButton: {
+    styleOverrides: {
+      root: {
+        '&:hover': {
+          background: 'transparent',
+        },
+      },
+    },
+  },
   MuiChip: {
     styleOverrides: {
       root: {
@@ -263,6 +272,16 @@ theme.components = {
       },
       root: {
         background: 'rgba(31, 23, 18, 0.12)',
+        '&.customDivider': {
+          width: '100%',
+          maxWidth: 120,
+          marginBottom: theme.spacing(3),
+          height: 2,
+          background: theme.palette.primary.dark,
+          [theme.breakpoints.down('md')]: {
+            maxWidth: 64,
+          },
+        },
       },
     },
   },
@@ -410,14 +429,39 @@ theme.components = {
     },
     styleOverrides: {
       root: {
+        textDecoration: 'none',
+        fontSize: '1em',
         fontFamily: `'Montserrat', sans-serif`,
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: '120%',
         cursor: 'pointer',
-        color: '#000000',
+        position: 'relative',
+        color: theme.palette.text.primary,
         transition: theme.transitions.create(['color', 'transform'], { duration: 200 }),
+        '&.unstyled': {
+          '&::before': {
+            display: 'none',
+          },
+        },
+        '&::before': {
+          content: '""',
+          height: 2,
+          width: '100%',
+          background: theme.palette.primary.light,
+          position: 'absolute',
+          bottom: -5,
+          left: 0,
+          zIndex: 3,
+          transform: 'scaleX(0)',
+          transformOrigin: '0 50%',
+          transition: 'transform .4s',
+          transitionTimingFunction: 'cubic-bezier(0.7, 0, 0.3, 1)',
+        },
         '&:hover': {
-          color: '#EF761F',
+          color: theme.palette.primary.light,
+          '&::before': {
+            transform: 'scaleX(1)',
+          },
         },
       },
     },
@@ -465,6 +509,57 @@ theme.components = {
       tooltip: {
         backgroundColor: '#1F1712',
         borderRadius: 3,
+      },
+    },
+  },
+  MuiTypography: {
+    styleOverrides: {
+      h1: {
+        fontSize: 96,
+        fontWeight: 600,
+        letterSpacing: 1.5,
+        lineHeight: '135px',
+        [theme.breakpoints.down('xl')]: {
+          lineHeight: '98px',
+        },
+        [theme.breakpoints.down('lg')]: {
+          fontSize: 64,
+          lineHeight: '85px',
+        },
+        [theme.breakpoints.down('md')]: {
+          fontSize: 48,
+          lineHeight: '70px',
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: 36,
+          lineHeight: '70px',
+        },
+        [theme.breakpoints.down(490)]: {
+          fontSize: 32,
+          lineHeight: '70px',
+        },
+        [theme.breakpoints.down(360)]: {
+          fontSize: 21,
+          lineHeight: '38px',
+        },
+      },
+      h3: {
+        [theme.breakpoints.down('lg')]: {
+          fontSize: '1em',
+          letterSpacing: '0.8px',
+        },
+      },
+      body2: {
+        fontWeight: 600,
+        fontSize: 16,
+        lineHeight: 1.4,
+        letterSpacing: '1.5px',
+        [theme.breakpoints.down('md')]: {
+          fontSize: 14,
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: 12,
+        },
       },
     },
   },

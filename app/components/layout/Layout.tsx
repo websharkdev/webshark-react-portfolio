@@ -1,5 +1,5 @@
 import { motion, useScroll } from 'framer-motion'
-import React, { Dispatch, FC, ReactElement, SetStateAction, createContext, useState } from 'react'
+import { FC, ReactElement, createContext, useState } from 'react'
 import { LanguageProps } from 'shared/types/home'
 
 import { HelpUkraine } from '@/components/layout/HelpUkraine'
@@ -21,6 +21,7 @@ export const UserLanguageContext = createContext<LanguageContext>({})
 const Layout: FC<{ children: ReactElement }> = ({ children }) => {
   const [language, setLanguage] = useState<LanguageProps>('en')
   const { scrollYProgress } = useScroll()
+
   return (
     <UserLanguageContext.Provider
       value={{
@@ -33,8 +34,10 @@ const Layout: FC<{ children: ReactElement }> = ({ children }) => {
       <div className={styles.layout}>
         <Header />
         <div className={styles.page}>{children}</div>
-        <HelpUkraine />
-        <Footer />
+        <div className={styles.footer}>
+          <HelpUkraine />
+          <Footer />
+        </div>
       </div>
     </UserLanguageContext.Provider>
   )

@@ -13,10 +13,10 @@ const Error404: NextPage = () => (
     <Layout>
       <Box sx={{ width: '100%', position: 'relative', px: 6 }}>
         <HeaderWrapper
-          subtitle={'creative developer'}
+          subtitle="creative developer"
           photoBG={HeaderBG}
           position="background"
-          shift={'unstyled'}
+          shift="unstyled"
           size={{
             xs: [256, 256],
             sm: [440, 440],

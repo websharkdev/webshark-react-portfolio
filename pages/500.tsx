@@ -13,18 +13,18 @@ const Error500: NextPage = () => (
     <Layout>
       <Box sx={{ width: '100%', position: 'relative', px: 6 }}>
         <HeaderWrapper
-          subtitle={'creative developer'}
+          subtitle="creative developer"
           photoBG={HeaderBG}
           position="background"
-          shift={'unstyled'}
+          shift="unstyled"
           size={{
             xs: [256, 256],
             sm: [440, 440],
             md: [500, 500],
           }}
           width={950}
-          title={<>500 - Server-side error occurred</>}
-          text={' Some things went wrong. Server-side error occurred. Try again litle bit later.'}
+          title="500 - Server-side error occurred"
+          text="Some things went wrong. Server-side error occurred. Try again litle bit later."
         />
       </Box>
     </Layout>

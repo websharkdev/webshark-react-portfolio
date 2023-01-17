@@ -307,74 +307,104 @@ export const home_dataEN = {
     },
   },
 }
-
 export const home_dataRU = {
   menu: [
     {
       id: 0,
       link: '/',
-      title: 'домашняя',
+      title: 'home',
     },
     {
       id: 1,
       link: '/about',
-      title: 'про меня',
+      title: 'about',
     },
     {
       id: 2,
       link: '/works',
-      title: 'работы',
+      title: 'works',
     },
     {
       id: 3,
       link: '/in_progress',
-      title: 'блог',
+      title: 'blog',
     },
     {
       id: 4,
       link: '/contacts',
-      title: 'контакты',
+      title: 'contacts',
     },
   ],
-  fio: 'Бортницкий. Алексей.',
-  header_fio: 'Бортницкий Алексей.',
+  fio: 'Bortnytskyi. Alexey.',
+  header_fio: `Bortnytskyi  Alexey.`,
   home: {
-    sub_title: 'креативный. разработчик',
-    text: 'Помогаю компаниям, брендам и предпринимателям разрабатывать любые цифровые продукты и достигать поставленных целей',
+    sub_title: 'creative. developer',
+    text: 'I help companies, brands and entrepreneurs develop any digital products and achieve their goals',
     btn: {
-      name: 'написать мне.',
+      name: 'contact me.',
       link: 'alexey.bortnytskyi@gmail.com',
     },
   },
   about: {
-    section: 'про меня.',
-    text: `Я занимаюсь веб-разработкой уже ${
+    section: 'about.',
+    text: `I have been engaged in web development for ${
       new Date().getFullYear() - 2017
-    } лет, за это время реализовал десятки проектов, с которыми вы можете ознакомиться ниже. Большинство из них я не могу показать (я подписал NDA)`,
+    } years, during this time I have implemented dozens of projects, which you can find below. Most of them I can't show (I signed an NDA)`,
     btn: {
-      name: 'резюме.',
+      name: 'actual cv.',
       link: 'https://www.notion.so/CV-d9f17ad32676467f895a71b48974b6ae',
     },
   },
   work_history: {
     section: 'work history.',
-    text: '',
+    text: `I took my first freelancing job at 15, and that's how my professional career began. But after some time, I realized that the work is not stable, and I do not develop in it as a professional.`,
     history: [
-      'Freelance',
-      'Freelance1',
-      'Changeblock',
-      'NeotPilots',
-      'Investables',
-      'Your company',
-      'Future',
-      'Future',
-      'Rich',
+      {
+        id: 0,
+        title: 'Freelance',
+        started: new Date('19 Aug 2018'),
+        ended: new Date('7 Oct 2021'),
+      },
+      {
+        id: 1,
+        title: 'NeonPilots',
+        started: new Date('7 Oct 2021'),
+        ended: new Date('19 Apr 2022'),
+      },
+      {
+        id: 2,
+        title: 'Changeblock',
+        started: new Date('19 Oct 2021'),
+        ended: new Date('19 Apr 2022'),
+      },
+      {
+        id: 3,
+        title: 'Investables',
+        started: new Date('19 Apr 2022'),
+        ended: new Date('19 Jun 2022'),
+      },
+      {
+        id: 4,
+        title: 'Your company',
+        started: new Date(),
+        ended: new Date('19 Jun 2026'),
+      },
+      {
+        id: 5,
+        title: 'Future',
+        started: new Date('19 Jun 2026'),
+        ended: new Date('19 Jun 2027'),
+      },
+      {
+        id: 6,
+        title: 'Future',
+        started: new Date('19 Jun 2027'),
+        ended: new Date('19 Jun 2028'),
+      },
     ],
   },
   personal_info: {
     section: 'personal.',
-    region: 'Pamplona, Spain',
-    options: 'Remote  Office',
     text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${myAge}). During this time, I have implemented dozens of projects, which you can see above.`,
     personal_information: [
       {
@@ -400,11 +430,11 @@ export const home_dataRU = {
     },
   },
   stack: {
-    section: 'стэк.',
+    section: 'stack.',
     tech_stack: 'HTML SASS TYPESCRIPT REACT REDUX Framer MaterialUI TAILWIND GRAPHQL REST API STORYBOOK',
   },
   project: {
-    section: 'работы.',
+    section: 'projects.',
     projects: [
       {
         id: 0,
@@ -463,13 +493,14 @@ export const home_dataRU = {
     ],
   },
   contacts: {
-    section: 'контакты.',
+    section: 'contacts.',
     text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${myAge}). During this time, I have implemented dozens of projects, which you can see above.`,
     btn: {
-      name: 'написать мне.',
+      name: 'actual CV.',
       link: 'alexey.bortnytskyi@gmail.com',
     },
   },
+
   contacts_page: {
     section: 'contacts.',
     text: `I was born in Irpin, Ukraine and started studying front-end development at the age of 14 (now I’m ${myAge}). During this time, I have implemented dozens of projects, which you can see above.`,
@@ -719,6 +750,7 @@ export const helpUkraineRU = {
       text: `Be on the right side of history! Today it's us, tomorrow it could be you.`,
     },
   ],
+
   financially: {
     section: 'Help financially.',
     text: 'Please consider helping Ukraine fight back by donating to local charitable funds. Avoid donating to global funds such as Red Cross, UNCR, or other non-UA based NGOs — their support is ineffective.',
@@ -727,36 +759,56 @@ export const helpUkraineRU = {
         id: 0,
         title: 'united24',
         text: 'Official government donation page.United24 is a global initiative to support Ukraine launched on May 5, 2022 by the Ukrainian authorities during the Russian invasion of Ukraine.',
-        image: 'https://via.placeholder.com/347x179.png/a59090/000000?Text=347x179',
-        link: '#',
+        image: 'https://via.placeholder.com/880x879.png/a59090/000000?Text=880x879',
+        link: {
+          id: 0,
+          title: 'help.',
+          link: '#',
+        },
       },
       {
         id: 1,
         title: 'united24',
         text: 'Official government donation page.United24 is a global initiative to support Ukraine launched on May 5, 2022 by the Ukrainian authorities during the Russian invasion of Ukraine.',
         image: 'https://via.placeholder.com/347x179.png/a59090/000000?Text=347x179',
-        link: '#',
+        link: {
+          id: 0,
+          title: 'help.',
+          link: '#',
+        },
       },
       {
         id: 2,
         title: 'united24',
         text: 'Official government donation page.United24 is a global initiative to support Ukraine launched on May 5, 2022 by the Ukrainian authorities during the Russian invasion of Ukraine.',
         image: 'https://via.placeholder.com/347x179.png/a59090/000000?Text=347x179',
-        link: '#',
+        link: {
+          id: 0,
+          title: 'help.',
+          link: '#',
+        },
       },
       {
         id: 3,
         title: 'united24',
         text: 'Official government donation page.United24 is a global initiative to support Ukraine launched on May 5, 2022 by the Ukrainian authorities during the Russian invasion of Ukraine.',
         image: 'https://via.placeholder.com/347x179.png/a59090/000000?Text=347x179',
-        link: '#',
+        link: {
+          id: 0,
+          title: 'help.',
+          link: '#',
+        },
       },
       {
         id: 4,
         title: 'united24',
         text: 'Official government donation page.United24 is a global initiative to support Ukraine launched on May 5, 2022 by the Ukrainian authorities during the Russian invasion of Ukraine.',
         image: 'https://via.placeholder.com/347x179.png/a59090/000000?Text=347x179',
-        link: '#',
+        link: {
+          id: 0,
+          title: 'help.',
+          link: '#',
+        },
       },
     ],
   },

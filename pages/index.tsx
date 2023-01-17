@@ -6,14 +6,12 @@ import { Home } from '@/screens/Home'
 
 import Meta from '@/utils/meta/Meta'
 
-const HomePage: NextPage = () => {
-  return (
-    <Meta title="Home" description="Welcome to the Bortnytskyi Alexey portfolio. It's home page">
-      <Layout>
-        <Home />
-      </Layout>
-    </Meta>
-  )
-}
+const HomePage: NextPage = () => (
+  <Meta title="Home" description="Welcome to the Bortnytskyi Alexey portfolio. It's home page">
+    <Layout>
+      <Home />
+    </Layout>
+  </Meta>
+)
 
 export default HomePage

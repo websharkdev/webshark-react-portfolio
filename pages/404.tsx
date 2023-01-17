@@ -29,7 +29,7 @@ const Error404: NextPage = () => (
               <br /> Not found
             </>
           }
-          text={'Some things went wrong. We can’t seem to find the page you’re looking for. Just go back.'}
+          text="Some things went wrong. We can’t seem to find the page you’re looking for. Just go back."
         />
       </Box>
     </Layout>

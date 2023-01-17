@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
 
-import Layout from '@/components/layout/Layout'
-
 import { Styleguide } from '@/screens/Styleguide'
 
 import Meta from '@/utils/meta/Meta'

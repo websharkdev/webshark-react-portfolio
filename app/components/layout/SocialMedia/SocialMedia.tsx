@@ -1,4 +1,4 @@
-import { Grid, Link, styled } from '@mui/material'
+import { Grid, Link as MuiLink, styled } from '@mui/material'
 import Image from 'next/image'
 import { memo, useContext } from 'react'
 import { ContactsItemProps, SocialItemProps } from 'shared/types/home'
@@ -17,6 +17,9 @@ const Root = styled(Grid)(({ theme }) => ({
     marginBottom: theme.spacing(3),
     height: 2,
     background: theme.palette.primary.dark,
+    [theme.breakpoints.down('md')]: {
+      maxWidth: 64,
+    },
     '&.light': {
       background: theme.palette.primary.light,
     },
@@ -53,14 +56,14 @@ export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }
         <Grid container flexWrap="nowrap" direction="column" rowSpacing={1}>
           {home_data.contacts.map((item: ContactsItemProps) => (
             <Grid item key={item.id}>
-              <Link
+              <MuiLink
                 href={item.href}
                 className={`social-media--links-item ${color}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {item.name}
-              </Link>
+              </MuiLink>
             </Grid>
           ))}
         </Grid>
@@ -70,16 +73,16 @@ export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }
         <Grid container flexWrap="nowrap" direction="row" columnSpacing={1}>
           {home_data.socials.map((item: SocialItemProps) => (
             <Grid item key={item.id}>
-              <Link
+              <MuiLink
                 href={item.href}
-                className="about-content--socials-item"
+                className="about-content--socials-item unstyled"
                 key={item.id}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 {/* @ts-ignore */}
                 <Image src={item.icon} alt="social-item--icon" />
-              </Link>
+              </MuiLink>
             </Grid>
           ))}
         </Grid>

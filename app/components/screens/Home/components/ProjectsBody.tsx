@@ -1,14 +1,14 @@
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
-import { ProjectItemProps } from 'shared/types/home'
+import { DataProps, ProjectItemProps } from 'shared/types/home'
 
 import { ProjectItem } from '@/components/projects'
 
 type Props = {
-  data: any
+  data: DataProps
 }
 
 const Root = styled(Grid)(({ theme }) => ({
-  padding: `${theme.spacing(12)} 0`,
+  paddingBottom: theme.spacing(12),
   '& .card-container': {
     overflow: 'hidden',
     display: 'flex',
@@ -41,15 +41,17 @@ export const ProjectsBody = ({ data }: Props) => {
     >
       <Root container rowSpacing={4}>
         <Grid item xs={12} className="projects-section">
-          <Typography variant="h4">{project.section}</Typography>
+          <Typography variant="h3">{project.section}</Typography>
         </Grid>
         <Grid item xs={12}>
           <Grid container wrap="nowrap" direction="column" rowSpacing={4}>
-            {project.projects.map((item: ProjectItemProps, id: number) => (
-              <Grid item key={item.id} xs={12}>
-                <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
-              </Grid>
-            ))}
+            {project.projects
+              .map((item: ProjectItemProps, id: number) => (
+                <Grid item key={item.id} xs={12}>
+                  <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
+                </Grid>
+              ))
+              .slice(-3)}
           </Grid>
         </Grid>
       </Root>

@@ -1,8 +1,8 @@
-import { Box, Grid, Typography, styled } from '@mui/material'
+import { Box, Grid, Link as MuiLink, Typography, styled } from '@mui/material'
 import Image from 'next/image'
-import Link from 'next/link'
 import { FC, useContext, useEffect, useState } from 'react'
-import { MenuItemProps } from 'shared/types/home'
+import { useLanguage } from 'shared/hooks/useLanguage'
+import { LanguageProps, MenuItemProps } from 'shared/types/home'
 
 import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
@@ -25,6 +25,9 @@ const Root = styled(Grid)(({ theme }) => ({
     alignItems: 'flex-end',
     background: '#DBFF5D',
     padding: `${theme.spacing(11)} ${theme.spacing(5)} ${theme.spacing(4)} ${theme.spacing(5)}`,
+    [theme.breakpoints.down('md')]: {
+      padding: `${theme.spacing(11)} ${theme.spacing(2.5)} ${theme.spacing(4)} ${theme.spacing(2.5)}`,
+    },
     '& .footer-leftSide--divider': {
       marginTop: 20,
       height: 2,
@@ -43,6 +46,9 @@ const Root = styled(Grid)(({ theme }) => ({
     display: 'flex',
     alignItems: 'flex-end',
     padding: `${theme.spacing(11)} ${theme.spacing(5)} ${theme.spacing(4)} ${theme.spacing(5)}`,
+    [theme.breakpoints.down('md')]: {
+      padding: `${theme.spacing(11)} ${theme.spacing(2.5)} ${theme.spacing(4)} ${theme.spacing(2.5)}`,
+    },
     '& .footer-rightSide--divider': {
       marginBottom: 20,
       height: 2,
@@ -71,42 +77,36 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const Footer: FC = (props: Props) => {
-  const languageProps = useContext(UserLanguageContext)
+  const [language, setLanguage] = useState<LanguageProps>('en')
   const [data, setData] = useState(home_dataEN)
 
-  useEffect(() => {
-    switch (languageProps.language) {
-      case 'en':
-        setData(home_dataEN)
-        break
-      case 'ru':
-        setData(home_dataRU)
-        break
-
-      default:
-        break
-    }
-  }, [languageProps.language])
+  useLanguage({
+    dataEN: home_dataEN,
+    dataRU: home_dataRU,
+    setData,
+    language,
+    setLanguage,
+  })
 
   const { menu, fio } = data
   return (
     <Root container>
       <Grid item xs={12} md={8} className="footer-leftSide">
-        <Grid container rowSpacing={{ xs: 4, md: 6 }} columnSpacing={{ xs: 0, md: 4 }}>
+        <Grid container rowSpacing={{ xs: 8, md: 6 }} columnSpacing={{ xs: 0, md: 4 }}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h4">menu.</Typography>
+            <Typography variant="h3">menu.</Typography>
             <Box className="footer-leftSide--divider" />
             <Grid container mt={2.5} rowSpacing={3}>
               {menu.map((item: MenuItemProps) => (
                 <Grid item xs={6} key={item.id} className={`footer-menu--item ${styles.MenuItem}`}>
-                  <Link href={item.link}>{`${item.title}.`}</Link>
+                  <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
                 </Grid>
               ))}
             </Grid>
           </Grid>
           <Grid item xs={12} md={5}>
             <Box width={{ md: 220, xs: 220 }}>
-              <Typography variant="h4">{fio}</Typography>
+              <Typography variant="h3">{fio}</Typography>
               <Box className="footer-leftSide--divider" />
               <Typography variant="body2" fontWeight={600} mt={3}>
                 designer, developer, creator, and just a cool pepper.
@@ -116,19 +116,19 @@ export const Footer: FC = (props: Props) => {
 
           <Grid item xs={12} md={2}>
             <Typography variant="h6" className="footer-leftSide--createdWithLove">
-              created in 2022 .//. with <span>❤</span>
+              created in {new Date().getFullYear()} .//. with <span>❤</span>
             </Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12} md={4} className="footer-rightSide">
-        <Grid container rowSpacing={2}>
+        <Grid container rowSpacing={4}>
           <SocialMedia color="white" dividerColor="light" />
           <Grid item xs={12}>
             <Box className="footer-rightSide--qrcodeBox">
-              <Link href="https://www.buymeacoffee.com/webshark">
+              <MuiLink href="https://www.buymeacoffee.com/webshark">
                 <Image width="95px" height="95px" src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
-              </Link>
+              </MuiLink>
             </Box>
           </Grid>
         </Grid>

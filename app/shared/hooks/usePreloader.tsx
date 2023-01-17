@@ -1,3 +1,4 @@
+import { Box } from '@mui/material'
 import { useLayoutEffect, useState } from 'react'
 
 import PreloaderPage from '../../../pages/preloader'
@@ -12,5 +13,5 @@ export const UsePreloader = ({ children, state, setState }: Props) => {
   useLayoutEffect(() => {
     setState(true)
   }, [])
-  return <>{state ? <>{children}</> : <PreloaderPage />}</>
+  return <>{state ? <Box>{children}</Box> : <PreloaderPage />}</>
 }

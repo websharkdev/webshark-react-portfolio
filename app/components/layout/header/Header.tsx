@@ -6,14 +6,13 @@ import {
   Grid,
   IconButton,
   MenuItem,
+  Link as MuiLink,
   Typography,
   styled,
   useMediaQuery,
 } from '@mui/material'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { FC, useContext, useEffect, useState } from 'react'
-import { useWidth } from 'shared/hooks'
 import { MenuItemProps } from 'shared/types/home'
 
 import { home_data, home_dataEN, home_dataRU } from '@/components/screens/Home/data'
@@ -42,6 +41,8 @@ const Root = styled(Grid)(({ theme }) => ({
   flexWrap: 'nowrap',
   marginBottom: theme.spacing(2),
   alignItems: 'center',
+  position: 'relative',
+  zIndex: 30,
   [theme.breakpoints.down('md')]: {
     alignItems: 'flex-start',
   },
@@ -62,12 +63,12 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  width: 'calc(100% - 68px)',
+  width: '100%',
   margin: '0 auto',
-  padding: '34px 0',
+  padding: '34px 34px',
   background: theme.palette.background.default,
   [theme.breakpoints.down('sm')]: {
-    padding: '24px 0',
+    padding: '24px 20px',
   },
 }))
 
@@ -87,7 +88,6 @@ const Rectangle = ({ position }: any) => {
 
 export const Header: FC<Props> = () => {
   const languageProps = useContext(UserLanguageContext)
-  const currentBreakpoint = useWidth()
 
   const [data, setData] = useState(home_dataEN)
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -114,12 +114,14 @@ export const Header: FC<Props> = () => {
 
   const { menu, header_fio } = data
   const { languages } = home_data
+  // @ts-ignore
+  const tablet = useMediaQuery((theme) => theme.breakpoints.down('md'))
 
   return (
     <Wrapper>
       <Root container className="wrapper">
         <Grid item xs={12} md="auto">
-          {currentBreakpoint === 'sm' || currentBreakpoint === 'xs' || currentBreakpoint === 'md' ? (
+          {tablet ? (
             <Box sx={{ width: '100%' }}>
               <IconButton
                 id="header-menu--burger"
@@ -165,7 +167,7 @@ export const Header: FC<Props> = () => {
                 <Box sx={{ py: 4 }}>
                   {menu.map((item: MenuItemProps) => (
                     <MenuItem onClick={handleClose} key={item.id} className={`header-menu--item ${styles.MenuItem}`}>
-                      <Link href={item.link}>{`${item.title}.`}</Link>
+                      <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
                     </MenuItem>
                   ))}
 
@@ -204,7 +206,7 @@ export const Header: FC<Props> = () => {
             <Grid container spacing={{ sm: 2, md: 4 }}>
               {menu.map((item: MenuItemProps) => (
                 <Grid item sm={6} md={'auto'} key={item.id} className={`header-menu--item ${styles.MenuItem}`}>
-                  <Link href={item.link}>{`${item.title}.`}</Link>
+                  <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
                 </Grid>
               ))}
             </Grid>

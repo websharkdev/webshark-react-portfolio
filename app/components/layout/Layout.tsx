@@ -1,5 +1,5 @@
 import { motion, useScroll } from 'framer-motion'
-import { FC, ReactElement, RefObject, createContext, useEffect, useRef, useState } from 'react'
+import { FC, ReactElement, createContext, useState } from 'react'
 import { LanguageProps } from 'shared/types/home'
 
 import { HelpUkraine } from '@/components/layout/HelpUkraine'
@@ -18,34 +18,10 @@ interface LanguageContext {
 // @ts-ignore
 export const UserLanguageContext = createContext<LanguageContext>({})
 
-function useFollowPointer(ref: RefObject<HTMLElement>) {
-  const [point, setPoint] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    if (!ref.current) return
-
-    const handlePointerMove = ({ clientX, clientY }: MouseEvent) => {
-      const element = ref.current!
-
-      const x = clientX - element.offsetLeft - element.offsetWidth / 2
-      const y = clientY - element.offsetTop - element.offsetHeight / 2
-      setPoint({ x, y })
-    }
-
-    window.addEventListener('pointermove', handlePointerMove)
-
-    return () => window.removeEventListener('pointermove', handlePointerMove)
-  }, [])
-
-  return point
-}
-
 const Layout: FC<{ children: ReactElement }> = ({ children }) => {
   const [language, setLanguage] = useState<LanguageProps>('en')
   const { scrollYProgress } = useScroll()
 
-  const ref = useRef(null)
-  const { x, y } = useFollowPointer(ref)
   return (
     <UserLanguageContext.Provider
       value={{
@@ -55,23 +31,13 @@ const Layout: FC<{ children: ReactElement }> = ({ children }) => {
       }}
     >
       <motion.div className={styles.ProgressBar} style={{ scaleX: scrollYProgress }} />
-      {/* <motion.div
-        ref={ref}
-        className="box"
-        animate={{ x, y }}
-        transition={{
-          type: 'spring',
-          damping: 5,
-          stiffness: 50,
-          restDelta: 0.001,
-        }}
-      /> */}
-
       <div className={styles.layout}>
         <Header />
         <div className={styles.page}>{children}</div>
-        <HelpUkraine />
-        <Footer />
+        <div className={styles.footer}>
+          <HelpUkraine />
+          <Footer />
+        </div>
       </div>
     </UserLanguageContext.Provider>
   )

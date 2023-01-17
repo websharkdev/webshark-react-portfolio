@@ -57,10 +57,6 @@ const Root = styled(Grid)(({ theme }) => ({
     },
     '& .projects-item--content-titleContainer': {
       paddingTop: 0,
-      '& .projects-item--content-title': {
-        fontSize: '1.5em',
-        letterSpacing: '0.5px',
-      },
     },
     '& .projects-item--content-textContainer': {
       width: '100%',
@@ -70,6 +66,9 @@ const Root = styled(Grid)(({ theme }) => ({
         marginBottom: theme.spacing(3),
         height: 2,
         background: theme.palette.primary.dark,
+        [theme.breakpoints.down('md')]: {
+          maxWidth: 64,
+        },
       },
       '& .projects-item--content-text': {
         fontSize: 12,

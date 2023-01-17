@@ -1,4 +1,5 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
+import { FC } from 'react'
 
 import LanguageHandler from '@/components/layout/language'
 
@@ -41,7 +42,7 @@ const Wrapper = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const HomeScroll = (props: Props) => {
+export const HeaderScroll: FC<Props> = (props) => {
   return (
     <Wrapper container direction="column" className={`${styles.HomeRotated}`}>
       <Grid item sx={{ width: 'max-content' }} className={`${styles.HomeLanguageSwitch} rotated-item`}>

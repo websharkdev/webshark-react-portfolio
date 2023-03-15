@@ -13,7 +13,7 @@ const LanguageHandlerBurger = memo(({ setHideMenu }: Props) => {
 
   return (
     <Grid container width={'100%'}>
-      {context.data.languages.map((item: LanguageProps, index: number) => (
+      {context.data.languages.map((item: any, index: number) => (
         <Grid
           item
           sx={{ display: 'flex', justifyContent: 'center' }}
@@ -30,7 +30,7 @@ const LanguageHandlerBurger = memo(({ setHideMenu }: Props) => {
               window.localStorage.setItem('language_folio', item.toString())
               setHideMenu(null)
             }}
-            className={`unStyled language_menu--item ${item === context.language ? 'active' : ''}`}
+            className={`unStyled language_menu--item ${item === LanguageProps[context.language] ? 'active' : ''}`}
           >
             {item}
           </Button>

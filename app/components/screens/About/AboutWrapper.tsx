@@ -1,7 +1,8 @@
 import { Divider, Grid, Typography, styled } from '@mui/material'
-import { useContext, useEffect, useState } from 'react'
+import { FC, useContext, useEffect, useState } from 'react'
 import { getAboutData } from 'shared/api/home.api'
 import { LanguageProps } from 'shared/types/general'
+import { AboutProps } from 'shared/types/home'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
@@ -22,17 +23,16 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const AboutWrapper = (props: Props) => {
+export const AboutWrapper: FC<Props> = (props) => {
   const context = useContext(UserLanguageContext)
-  const [data, setData] = useState<any>()
+  const [data, setData] = useState<AboutProps>()
 
-  // setData(res.projectsBlocks[LanguageProps[context.language]]
   useEffect(() => {
     getAboutData().then((res: any) => setData(res))
   }, [context.language])
 
   if (data === undefined) return <Typography>Loading...</Typography>
-
+  const langIndex: number = +LanguageProps[context.language]
   return (
     <Root container rowSpacing={12}>
       <Grid item xs={12}>
@@ -58,22 +58,22 @@ export const AboutWrapper = (props: Props) => {
         <Divider light />
       </Grid>
       <Grid item xs={12}>
-        <AboutBody data={data.aboutBlocks[LanguageProps[context.language]]} fio={context.data.fio} />
+        <AboutBody data={data.aboutBlocks[langIndex]} fio={context.data.fio} />
 
         <Divider light />
       </Grid>
 
       <Grid item xs={12}>
-        <WorkHistory data={data.workHistoryBlocks[LanguageProps[context.language]]} />
+        <WorkHistory data={data.workHistoryBlocks[langIndex]} />
 
         <Divider light />
       </Grid>
 
       <Grid item xs={12}>
         <ContactsBody
-          data={data.contactsBlocks[LanguageProps[context.language]]}
+          data={data.contactsBlocks[langIndex]}
           fio={context.data.fio}
-          stack={data.homePages[LanguageProps[context.language]].techStack}
+          stack={data.homePages[langIndex].techStack}
         />
         <Divider light />
       </Grid>

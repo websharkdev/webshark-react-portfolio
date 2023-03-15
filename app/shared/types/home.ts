@@ -1,15 +1,9 @@
 import { ImageProps } from 'next/image'
 
-export interface Image {
-  src: string
-  alt: string
-  size?: 'xl' | 'lg' | 'md' | 'xs'
-}
-
-
-export interface HomeSwiperItem {
-  id: number
-  image: Image
+export interface IconProps {
+  id: string
+  url: string
+  fileName: string
 }
 
 export type MenuItemProps = {
@@ -19,6 +13,7 @@ export type MenuItemProps = {
 }
 
 export type ButtonProps = {
+  id: string
   name: string
   href: string
 }
@@ -26,7 +21,7 @@ export type ButtonProps = {
 export type HomePageData = {
   sub_title: string
   text: string
-  btn: ButtonProps
+  buttons: ButtonProps
 }
 
 export type ContactsItemProps = {
@@ -37,46 +32,46 @@ export type ContactsItemProps = {
 
 export type SocialItemProps = {
   id: string
-  icon: any
+  icon: IconProps
   href: string
   tooltip?: string
 }
 
 export type AboutPageData = {
+  id: string
   section: string
   text: string
-  btn: ButtonProps
-}
-
-export type StackPageData = {
-  section: string
-  tech_stack: string
+  buttons: ButtonProps[]
 }
 
 export type ProjectItemProps = {
-  id: number
+  id: string
   title: string
   text: string
   stack: string[]
-  slider: string[]
-  btn: ButtonProps
+  slider: IconProps[]
+  buttons: ButtonProps[]
 }
+
 export type ProjectsPageData = {
   section: string
-  projects: ProjectItemProps[]
-  btn: ButtonProps
+  buttons: ButtonProps[]
+  projectItems: ProjectItemProps[]
 }
+
 export type WorkHistoryItemProps = {
-  id: number
+  id: string
   title: string
-  started: Date | number
-  ended: Date | number
+  started: string
+  ended: string
 }
 
 export type WorkHistoryProps = {
+  id: string
   section: string
   text: string
-  history: WorkHistoryItemProps[]
+  title: string
+  workHistories: WorkHistoryItemProps[]
 }
 
 export type PersonalInfoProps = {
@@ -86,52 +81,37 @@ export type PersonalInfoProps = {
 }
 
 export type ContactsProps = {
-  fio: string
+  id: string
   section: string
   text: string
-  contacts_links: ContactsItemProps[]
-  info: PersonalInfoProps[]
-  tech_stack: string
-  btn: ButtonProps
-}
-export type AboutProps = {
-  fio: string
-  about: AboutPageData
-  work_history: WorkHistoryProps
-  personal_info: {
-    section: string
-    text: string
-    fio: string
-    info: {
-      id: number
-      title: string
-      text: string
-    }[]
-    tech_stack: StackPageData['tech_stack']
-    btn: ButtonProps
-  }
+  contacts: MenuItemProps[]
+  baseInfos: PersonalInfoProps[]
 }
 
-export type DataProps = {
-  menu: MenuItemProps[]
+export type AboutProps = {
+  aboutBlocks: AboutPageData[]
+  homePages: {
+    techStack: string
+  }[]
+  workHistoryBlocks: WorkHistoryProps[]
+  contactsBlocks: ContactsProps[]
+}
+
+export type HeaderDataProps = {
+  contacts: MenuItemProps[]
+  cvLink: string
   fio: string
-  header_fio: string
-  home: HomePageData
-  about: AboutProps
-  stack: StackPageData
+  id: string
+  languages: string[]
+  mail: string
+  menus: MenuItemProps[]
+  phone: string
+  socialMedias: SocialItemProps[]
 }
 
 export type ImagePositionProps = 'default' | 'unStyled' | 'block' | 'background'
 
-export type ImageSizeProps = {
-  xs?: number[]
-  sm?: number[]
-  md?: number[]
-  lg?: number[]
-  xl?: number[]
-}
-
-export type ImageShiftProps = {
+export type ImageSProps = {
   xs?: number[]
   sm?: number[]
   md?: number[]
@@ -143,15 +123,21 @@ export type PhotoContainerProps = {
   mainPhoto?: ImageProps
   photoBG?: ImageProps
   position?: 'default' | 'unStyled' | 'block' | 'background'
-  size?: ImageSizeProps
-  shift?: ImageShiftProps
+  size?: ImageSProps
+  shift?: ImageSProps
   className?: string
 }
 
-export type HomeProps = {
-  languages: any
-  contacts: ContactsItemProps[]
-  socials: SocialItemProps[]
-  mail: string
-  cv_link: string
+export type HomePagesProps = {
+  techStack: string
+  aboutBlocks: AboutPageData[]
+  fio: string
+  headerBlocks: {
+    id: string
+    subtitle: string
+    text: string
+    buttons: ButtonProps[]
+  }[]
+  contactsBlocks: ContactsProps[]
+  projectsBlocks: ProjectsPageData[]
 }

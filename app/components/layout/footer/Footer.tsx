@@ -1,14 +1,14 @@
 import { Box, Grid, Link as MuiLink, Typography, styled } from '@mui/material'
 import Image from 'next/image'
 import { FC } from 'react'
-import { MenuItemProps } from 'shared/types/home'
+import { HeaderDataProps, MenuItemProps } from 'shared/types/home'
 
 import { buyMeACoffeQR } from '@/assets/icons/ui'
 
 import { SocialMedia } from '../SocialMedia'
 
 type Props = {
-  data: any
+  data: HeaderDataProps
 }
 
 const Root = styled(Grid)(({ theme }) => ({

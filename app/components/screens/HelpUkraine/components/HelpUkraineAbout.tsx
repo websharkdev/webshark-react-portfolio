@@ -1,6 +1,6 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
 import { FC } from 'react'
-import { ImageHelpUkraineProps, ParallaxTextProps } from 'shared/types/Ukraine'
+import { ParallaxTextProps } from 'shared/types/Ukraine'
 
 type Props = {
   data: any

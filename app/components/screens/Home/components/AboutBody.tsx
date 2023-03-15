@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
-import { AboutProps } from 'shared/types/home'
+import { AboutPageData } from 'shared/types/home'
 
 import { SocialMedia } from '@/components/layout/SocialMedia'
 import { PhotoContainer } from '@/components/layout/photoContainer'
@@ -7,8 +7,8 @@ import { PhotoContainer } from '@/components/layout/photoContainer'
 import { AboutPhoto } from '@/assets/icons/photos'
 
 type Props = {
-  data: any
-  fio?: any
+  data: AboutPageData
+  fio?: string
 }
 
 const Root = styled(Grid)(({ theme }) => ({

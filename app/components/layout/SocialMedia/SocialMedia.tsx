@@ -54,7 +54,7 @@ export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }
 
       <Grid item className="social-media--links-container">
         <Grid container flexWrap="nowrap" direction="column" rowGap={1.5}>
-          {data.contacts?.slice(0, 2).map((item: ContactsItemProps) => (
+          {data.contacts?.slice(0, 2).map((item: any) => (
             <Grid item key={item.id}>
               <MuiLink
                 href={item.href}

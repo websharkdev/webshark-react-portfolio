@@ -1,9 +1,8 @@
 import { Divider, Grid, Typography, styled } from '@mui/material'
 import { FC, useContext, useEffect, useState } from 'react'
 import { getWorksData } from 'shared/api/home.api'
-import { useLanguage } from 'shared/hooks/useLanguage'
 import { LanguageProps } from 'shared/types/general'
-import { ProjectItemProps } from 'shared/types/home'
+import { ProjectItemProps, ProjectsPageData } from 'shared/types/home'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
@@ -19,7 +18,7 @@ const Root = styled(Grid)(({ theme }) => ({
 
 export const ProjectsWrapper: FC<Props> = (props) => {
   const context = useContext(UserLanguageContext)
-  const [data, setData] = useState<any>()
+  const [data, setData] = useState<ProjectsPageData>()
 
   useEffect(() => {
     getWorksData().then((res: any) => setData(res.projectsBlocks[LanguageProps[context.language]]))
@@ -43,7 +42,7 @@ export const ProjectsWrapper: FC<Props> = (props) => {
             xs: [256, 256],
             sm: [440, 440],
           }}
-          title={data.fio}
+          title={context.data.fio}
           text="Woooop. Looks like works page. Have fun in this page (of course no, I have a girlfriend)"
         />
         <Divider light />

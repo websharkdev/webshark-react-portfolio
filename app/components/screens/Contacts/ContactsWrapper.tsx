@@ -2,6 +2,7 @@ import { Divider, Grid, Typography, styled } from '@mui/material'
 import { FC, useContext, useEffect, useState } from 'react'
 import { getContactsData } from 'shared/api/home.api'
 import { LanguageProps } from 'shared/types/general'
+import { ContactsProps } from 'shared/types/home'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
@@ -17,7 +18,7 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 export const ContactsWrapper: FC<Props> = (props) => {
   const context = useContext(UserLanguageContext)
-  const [data, setData] = useState<any>()
+  const [data, setData] = useState<ContactsProps>()
   useEffect(() => {
     getContactsData().then((res: any) => setData(res.contactsBlocks[LanguageProps[context.language]]))
   }, [])

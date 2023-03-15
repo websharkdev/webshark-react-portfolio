@@ -13,12 +13,12 @@ import {
 import { motion } from 'framer-motion'
 import { FC, useState } from 'react'
 import 'shared/api/home.api'
-import { MenuItemProps } from 'shared/types/home'
+import { HeaderDataProps, MenuItemProps } from 'shared/types/home'
 
 import LanguageHandlerBurger from '../language/LanguageHandlerBurger'
 
 type Props = {
-  data: any
+  data: HeaderDataProps
 }
 
 const icon = {
@@ -107,8 +107,6 @@ export const Header: FC<Props> = ({ data }) => {
 
   if (data === undefined) return <Typography>Loading...</Typography>
 
-  console.log(data)
-
   return (
     <Wrapper>
       <Root container className="wrapper">
@@ -157,9 +155,9 @@ export const Header: FC<Props> = ({ data }) => {
               </IconButton>
               <Drawer id="basic-menu" anchor="top" open={menuOpen} onClose={handleClose}>
                 <Box sx={{ py: 4 }}>
-                  {menus?.map((item: any) => (
+                  {menus?.map((item: MenuItemProps) => (
                     <MenuItem onClick={handleClose} key={item.id} className={`header-menu--item`}>
-                      <MuiLink href={item.link}>{`${item.name}.`}</MuiLink>
+                      <MuiLink href={item.href}>{`${item.name}.`}</MuiLink>
                     </MenuItem>
                   ))}
 

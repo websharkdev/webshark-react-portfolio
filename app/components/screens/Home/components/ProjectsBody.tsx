@@ -4,7 +4,7 @@ import { ProjectItemProps, ProjectsPageData } from 'shared/types/home'
 import { ProjectItem } from '@/components/projects'
 
 type Props = {
-  data: any
+  data: ProjectsPageData
 }
 
 const Root = styled(Grid)(({ theme }) => ({

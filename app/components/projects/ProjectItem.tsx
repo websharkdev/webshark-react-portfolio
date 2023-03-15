@@ -3,10 +3,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useWidth } from 'shared/hooks'
+import { IconProps, ProjectItemProps } from 'shared/types/home'
 import { Thumbs } from 'swiper'
-// Import Swiper styles
 import 'swiper/css'
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { DotsIcon, MinusIcon } from '@/assets/icons/ui'
@@ -14,7 +13,7 @@ import { DotsIcon, MinusIcon } from '@/assets/icons/ui'
 import styles from './project.module.sass'
 
 type Props = {
-  data: any
+  data: ProjectItemProps
   variant: 'green' | 'purpule'
 }
 
@@ -119,7 +118,7 @@ export const ProjectItem = ({ data, variant }: Props) => {
       <Root container className={variant}>
         <Grid item lg={8} xs={12} className="projects-item--photo">
           <Swiper thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }} modules={[Thumbs]}>
-            {data.slider.map((item: any) => (
+            {data.slider.map((item: IconProps) => (
               <SwiperSlide className="projects-item--photo-item" key={item.id}>
                 <img src={item.url} alt="project-item-image" />
               </SwiperSlide>
@@ -181,7 +180,7 @@ export const ProjectItem = ({ data, variant }: Props) => {
                   paddingRight: 30,
                 }}
               >
-                {data.slider.map((item: any) => (
+                {data.slider.map((item: IconProps) => (
                   <SwiperSlide className="projects-item--content-swiperThumbsItem" key={item.id}>
                     <img src={item.url} alt={item.fileName} />
                   </SwiperSlide>

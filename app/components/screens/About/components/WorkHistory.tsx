@@ -6,10 +6,11 @@ import { WorkHistoryItemProps, WorkHistoryProps } from 'shared/types/home'
 import { LeftBlob, RightBlob } from '@/assets/icons/blobs'
 
 type Props = {
-  data: any
+  data: WorkHistoryProps
 }
+
 type WorkItemProps = {
-  data: any
+  data: WorkHistoryItemProps
   state: string
 }
 

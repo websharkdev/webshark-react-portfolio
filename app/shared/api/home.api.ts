@@ -196,7 +196,6 @@ export const getWorksData = async () => {
           }
           title
           text
-          stage
           stack
           buttons {
             href

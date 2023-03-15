@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
+import { ImageProps } from 'next/image'
 import { FC } from 'react'
-import { PhotoContainerProps } from 'shared/types/home'
+import { ImageSProps, PhotoContainerProps } from 'shared/types/home'
 
 import { PhotoContainer } from '@/components/layout/photoContainer'
 
@@ -11,11 +12,11 @@ type Props = {
   subtitle: React.ReactNode
   text: string
   // image component
-  photoBG?: PhotoContainerProps['photoBG']
-  mainPhoto?: PhotoContainerProps['mainPhoto']
+  photoBG?: ImageProps
+  mainPhoto?: ImageProps
   position?: PhotoContainerProps['position']
-  shift?: PhotoContainerProps['shift'] | 'unstyled'
-  size?: PhotoContainerProps['size']
+  shift?: ImageSProps | 'unstyled'
+  size?: ImageSProps
   // title component
   title: React.ReactNode
   titleLink?: string

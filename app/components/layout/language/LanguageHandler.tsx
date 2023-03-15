@@ -1,7 +1,7 @@
-import { Box, Button, Menu, MenuItem, styled } from '@mui/material'
-import { memo, useContext, useState } from 'react'
-
-import { home_data } from '@/components/screens/Home/data'
+import { Box, Button, Menu, MenuItem, Typography, styled } from '@mui/material'
+import { memo, useContext, useEffect, useState } from 'react'
+import { getGeneralData } from 'shared/api/home.api'
+import { LanguageProps } from 'shared/types/general'
 
 import { UserLanguageContext } from '../Layout'
 
@@ -19,6 +19,7 @@ const Root = styled(Menu)(({ theme }) => ({
 
 const LanguageHandler = memo(() => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [languages, setLanguages] = useState<LanguageProps[]>([])
   const languageProps = useContext(UserLanguageContext)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,7 +29,11 @@ const LanguageHandler = memo(() => {
     setAnchorEl(null)
   }
 
-  const { languages } = home_data
+  useEffect(() => {
+    getGeneralData().then((res: any) => setLanguages(res.generals[0].languages))
+  }, [])
+
+  if (languages === undefined) return <Typography>Loading...</Typography>
 
   return (
     <Box width={'100%'}>
@@ -39,7 +44,7 @@ const LanguageHandler = memo(() => {
         className="unStyled"
         onClick={handleClick}
       >
-        {languageProps.language ? languageProps.language : 'en'}
+        {languages ? languageProps.language : 'en'}
       </Button>
       <Root
         id="language_menu"
@@ -58,19 +63,20 @@ const LanguageHandler = memo(() => {
           horizontal: 'center',
         }}
       >
-        {languages.map((item, id) => (
-          <MenuItem
-            onClick={() => {
-              languageProps.setLanguage(item)
-              window.localStorage.setItem('language_folio', item)
-              setAnchorEl(null)
-            }}
-            className={`language_menu--item ${item === languageProps.language ? 'active' : ''}`}
-            key={id}
-          >
-            {item}
-          </MenuItem>
-        ))}
+        {languages &&
+          languages.map((item: LanguageProps, id) => (
+            <MenuItem
+              onClick={() => {
+                languageProps.setLanguage(item)
+                window.localStorage.setItem('language_folio', item.toString())
+                setAnchorEl(null)
+              }}
+              className={`language_menu--item ${item === languageProps.language ? 'active' : ''}`}
+              key={id}
+            >
+              {item}
+            </MenuItem>
+          ))}
       </Root>
     </Box>
   )

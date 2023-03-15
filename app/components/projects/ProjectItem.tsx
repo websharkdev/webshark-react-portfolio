@@ -1,4 +1,4 @@
-import { Box, Button, Chip, Grid, IconButton, Tooltip, Typography, styled } from '@mui/material'
+import { Box, Button, Chip, Grid, IconButton, Link as MuiLink, Tooltip, Typography, styled } from '@mui/material'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -119,9 +119,9 @@ export const ProjectItem = ({ data, variant }: Props) => {
       <Root container className={variant}>
         <Grid item lg={8} xs={12} className="projects-item--photo">
           <Swiper thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }} modules={[Thumbs]}>
-            {data.slider.map((item: string, index: number) => (
-              <SwiperSlide className="projects-item--photo-item" key={index}>
-                <img src={item} alt="project-item-image" />
+            {data.slider.map((item: any) => (
+              <SwiperSlide className="projects-item--photo-item" key={item.id}>
+                <img src={item.url} alt="project-item-image" />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -181,18 +181,23 @@ export const ProjectItem = ({ data, variant }: Props) => {
                   paddingRight: 30,
                 }}
               >
-                {data.slider.map((item: string, index: number) => (
-                  <SwiperSlide className="projects-item--content-swiperThumbsItem" key={index}>
-                    <img src={item} alt="project-item--image" />
+                {data.slider.map((item: any) => (
+                  <SwiperSlide className="projects-item--content-swiperThumbsItem" key={item.id}>
+                    <img src={item.url} alt={item.fileName} />
                   </SwiperSlide>
                 ))}
               </Swiper>
             </Grid>
             <Grid item flex={1} />
             <Grid item className="projects-item--content-btnContainer">
-              <Button className="projects-item--content-btn" variant={variant === 'purpule' ? 'contained' : 'outlined'}>
-                {data.btn.name}
-              </Button>
+              <MuiLink href={data.buttons[0].href} className="unstyled" target="_blank" rel="noopener noreferrer">
+                <Button
+                  className="projects-item--content-btn"
+                  variant={variant === 'purpule' ? 'contained' : 'outlined'}
+                >
+                  {data.buttons[0].name}
+                </Button>
+              </MuiLink>
             </Grid>
           </Grid>
         </Grid>

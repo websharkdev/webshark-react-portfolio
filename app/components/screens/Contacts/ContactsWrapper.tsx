@@ -1,11 +1,10 @@
-import { Divider, Grid, styled } from '@mui/material'
-import React, { FC, useContext, useEffect, useState } from 'react'
-import { useLanguage } from 'shared/hooks/useLanguage'
-import { LanguageProps } from 'shared/types/home'
+import { Divider, Grid, Typography, styled } from '@mui/material'
+import { FC, useContext, useEffect, useState } from 'react'
+import { getContactsData } from 'shared/api/home.api'
+import { LanguageProps } from 'shared/types/general'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
-import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
 import { HeaderBG } from '@/assets/icons/backgrounds'
 
@@ -17,16 +16,13 @@ const Root = styled(Grid)(({ theme }) => ({
   padding: `0 ${theme.spacing(4)}`,
 }))
 export const ContactsWrapper: FC<Props> = (props) => {
-  const [language, setLanguage] = useState<LanguageProps>('en')
-  const [home_bodyData, setHome_bodyData] = useState(home_dataEN)
+  const context = useContext(UserLanguageContext)
+  const [data, setData] = useState<any>()
+  useEffect(() => {
+    getContactsData().then((res: any) => setData(res.contactsBlocks[LanguageProps[context.language]]))
+  }, [])
 
-  useLanguage({
-    dataEN: home_dataEN,
-    dataRU: home_dataRU,
-    setData: setHome_bodyData,
-    language,
-    setLanguage,
-  })
+  if (data === undefined) return <Typography>Loading...</Typography>
 
   return (
     <Root container>
@@ -57,7 +53,7 @@ export const ContactsWrapper: FC<Props> = (props) => {
         <Divider />
       </Grid>
       <Grid item xs={12}>
-        <ContactsBody data={home_bodyData} />
+        <ContactsBody data={data} fio={context.data.fio} />
       </Grid>
     </Root>
   )

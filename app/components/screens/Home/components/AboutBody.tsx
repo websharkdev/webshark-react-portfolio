@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
-import { DataProps } from 'shared/types/home'
+import { AboutProps } from 'shared/types/home'
 
 import { SocialMedia } from '@/components/layout/SocialMedia'
 import { PhotoContainer } from '@/components/layout/photoContainer'
@@ -7,7 +7,8 @@ import { PhotoContainer } from '@/components/layout/photoContainer'
 import { AboutPhoto } from '@/assets/icons/photos'
 
 type Props = {
-  data: DataProps
+  data: any
+  fio?: any
 }
 
 const Root = styled(Grid)(({ theme }) => ({
@@ -69,8 +70,8 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const AboutBody = ({ data }: Props) => {
-  const { about } = data
+export const AboutBody = ({ data, fio }: Props) => {
+  const { section, text, buttons } = data
   const tablet = useMediaQuery((theme) =>
     // @ts-ignore
     theme.breakpoints.down('md')
@@ -79,7 +80,7 @@ export const AboutBody = ({ data }: Props) => {
   return (
     <Root container rowSpacing={{ xs: 5, md: 10 }} columnSpacing={{ xs: 0, sm: 5, md: 0 }}>
       <Grid item xs={12} className="about-section">
-        <Typography variant="h3">{about.section}</Typography>
+        <Typography variant="h3">{section}.</Typography>
       </Grid>
       <Grid item xs={12} md={6} xl={5} className="about-photo--container">
         <PhotoContainer
@@ -98,23 +99,24 @@ export const AboutBody = ({ data }: Props) => {
           <Grid item>
             <Box className="about-content--container-textDivider" />
             <Typography className="about-content--container-text" variant="body2">
-              {about.text}
+              {text}
             </Typography>
           </Grid>
           <Grid item className="about-content--container-titleBox">
             <Box className="about-content--container-titleBox">
               <Typography component="div" width={{ xs: '100%', lg: '100%' }}>
                 <Typography variant="h1" component={'span'} className="about-content--container-title">
-                  {data.fio}
+                  {fio}
                 </Typography>
 
                 <Button
+                  sx={{ ml: { xs: 0, sm: 4 }, mb: { xs: 0, sm: 4 }, mt: { xs: 1.5, sm: 0 } }}
                   size={tablet ? 'medium' : 'large'}
                   className="about-content--container-btn"
-                  href={about.btn.link}
+                  href={buttons[0].href}
                   variant="contained"
                 >
-                  {about.btn.name}
+                  {buttons[0].name}
                 </Button>
               </Typography>
             </Box>

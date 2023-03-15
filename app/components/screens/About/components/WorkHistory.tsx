@@ -1,15 +1,15 @@
 import { Box, Button, Divider, Grid, Typography, styled, useMediaQuery } from '@mui/material'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
-import { DataProps, WorkHistoryItemProps } from 'shared/types/home'
+import { WorkHistoryItemProps, WorkHistoryProps } from 'shared/types/home'
 
 import { LeftBlob, RightBlob } from '@/assets/icons/blobs'
 
 type Props = {
-  data: DataProps
+  data: any
 }
 type WorkItemProps = {
-  data: WorkHistoryItemProps
+  data: any
   state: string
 }
 
@@ -169,8 +169,6 @@ const WorkHistoryItem = ({ data, state }: WorkItemProps) => {
     ? 1500
     : 2500
 
-  console.log(size)
-
   const px_size: number = Math.floor(date_difference / (60 * 60 * 24 * size))
 
   return (
@@ -196,13 +194,12 @@ const WorkHistoryItem = ({ data, state }: WorkItemProps) => {
 export const WorkHistory = ({ data }: Props) => {
   const [activeStep, setActiveStep] = useState<number>(1)
   const [showAll, setShowAll] = useState<boolean>(false)
-  const { work_history } = data
   const tablet = useMediaQuery((theme) =>
     // @ts-ignore
     theme.breakpoints.down('md')
   )
   useEffect(() => {
-    work_history.history.filter((item: WorkHistoryItemProps, index: number) =>
+    data.workHistories.filter((item: WorkHistoryItemProps, index: number) =>
       item.title.toLocaleLowerCase() === 'your company' ? setActiveStep(index) : null
     )
   }, [])
@@ -210,7 +207,7 @@ export const WorkHistory = ({ data }: Props) => {
   return (
     <Root container rowSpacing={10} direction={'column'}>
       <Grid item xs={12} className="work_history-section">
-        <Typography variant="h3">{work_history.section}</Typography>
+        <Typography variant="h3">{data.section}</Typography>
       </Grid>
       <Box className="work_history-left--blob">
         <Image src={LeftBlob} alt="blob image" />
@@ -218,7 +215,7 @@ export const WorkHistory = ({ data }: Props) => {
       <Grid item xs={4} className="work_history-section work_history-left--section">
         <Divider className="customDivider" />
         <Typography variant="body2" width={{ xs: 'auto', md: 400 }}>
-          {work_history.text}
+          {data.text}
         </Typography>
       </Grid>
 
@@ -237,11 +234,12 @@ export const WorkHistory = ({ data }: Props) => {
         <TitleWrapper>
           <Box component="div" width={{ xs: '100%', sm: '70%', md: 500, lg: 'max-content' }}>
             <Typography component="span" variant="h1" className={`title`}>
-              Front-end Developer.
+              {data.title}
             </Typography>
           </Box>
         </TitleWrapper>
       </Grid>
+
       <Box
         sx={{
           display: 'flex',
@@ -276,7 +274,7 @@ export const WorkHistory = ({ data }: Props) => {
             </Box>
           ) : null}
           {tablet
-            ? work_history.history
+            ? data.workHistories
                 .map((item: WorkHistoryItemProps, index: number) => (
                   <WorkHistoryItem
                     key={index}
@@ -285,7 +283,7 @@ export const WorkHistory = ({ data }: Props) => {
                   />
                 ))
                 .slice(showAll ? 0 : activeStep - 2, activeStep + 1)
-            : work_history.history.map((item: WorkHistoryItemProps, index: number) => (
+            : data.workHistories.map((item: WorkHistoryItemProps, index: number) => (
                 <WorkHistoryItem
                   key={index}
                   data={item}

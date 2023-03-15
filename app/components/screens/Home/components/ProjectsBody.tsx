@@ -1,10 +1,10 @@
 import { Box, Button, Grid, Typography, styled } from '@mui/material'
-import { DataProps, ProjectItemProps } from 'shared/types/home'
+import { ProjectItemProps, ProjectsPageData } from 'shared/types/home'
 
 import { ProjectItem } from '@/components/projects'
 
 type Props = {
-  data: DataProps
+  data: any
 }
 
 const Root = styled(Grid)(({ theme }) => ({
@@ -30,8 +30,7 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const ProjectsBody = ({ data }: Props) => {
-  const { project } = data
-
+  const { section, projectItems, buttons } = data
   return (
     <Box
       sx={{
@@ -39,13 +38,13 @@ export const ProjectsBody = ({ data }: Props) => {
         mb: 12,
       }}
     >
-      <Root container rowSpacing={4}>
+      <Root container rowSpacing={{ xs: 5, md: 10 }}>
         <Grid item xs={12} className="projects-section">
-          <Typography variant="h3">{project.section}</Typography>
+          <Typography variant="h3">{section}</Typography>
         </Grid>
         <Grid item xs={12}>
           <Grid container wrap="nowrap" direction="column" rowSpacing={4}>
-            {project.projects
+            {projectItems
               .map((item: ProjectItemProps, id: number) => (
                 <Grid item key={item.id} xs={12}>
                   <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
@@ -56,8 +55,8 @@ export const ProjectsBody = ({ data }: Props) => {
         </Grid>
       </Root>
       <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', mt: 4 }}>
-        <Button href="/works" size={'medium'}>
-          Show more.
+        <Button href={buttons[0].href} size={'medium'}>
+          {buttons[0].name}
         </Button>
       </Box>
     </Box>

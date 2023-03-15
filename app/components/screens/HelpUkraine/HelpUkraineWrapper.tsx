@@ -1,33 +1,26 @@
 import { Divider, Grid, styled } from '@mui/material'
-import { FC, useState } from 'react'
-import { useLanguage } from 'shared/hooks/useLanguage'
-import { LanguageProps } from 'shared/types/home'
+import { FC } from 'react'
 
-import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
+import { HeaderWrapper } from '@/components/layout/header'
 
-import { HeaderBG } from '@/assets/icons/backgrounds'
-
-import { helpUkraineEN, helpUkraineRU } from '../Home/data'
+import { ContactsBG } from '@/assets/icons/backgrounds'
 
 import { HelpUkraineAbout, HelpUkraineFinancially } from './components'
+import { data } from './data'
 
 type Props = {}
 
 const Root = styled(Grid)(({ theme }) => ({
   padding: `${theme.spacing(4)}`,
+  [theme.breakpoints.down('xl')]: {
+    padding: theme.spacing(4),
+  },
+  [theme.breakpoints.down('sm')]: {
+    padding: '24px 20px',
+  },
 }))
 
 export const HelpUkraineWrapper: FC<Props> = (props) => {
-  const [language, setLanguage] = useState<LanguageProps>('en')
-  const [ukraine_data, setUkraine_data] = useState(helpUkraineEN)
-
-  useLanguage({
-    dataEN: helpUkraineEN,
-    dataRU: helpUkraineRU,
-    setData: setUkraine_data,
-    language,
-    setLanguage,
-  })
   return (
     <Root container rowSpacing={10}>
       <Grid item xs={12}>
@@ -41,7 +34,7 @@ export const HelpUkraineWrapper: FC<Props> = (props) => {
               Genocide.
             </>
           }
-          photoBG={HeaderBG}
+          photoBG={ContactsBG}
           position="background"
           shift={'unstyled'}
           size={{
@@ -64,11 +57,11 @@ export const HelpUkraineWrapper: FC<Props> = (props) => {
       </Grid>
 
       <Grid item xs={12}>
-        <HelpUkraineAbout data={ukraine_data} />
+        <HelpUkraineAbout data={data} />
         <Divider />
       </Grid>
       <Grid item xs={12}>
-        <HelpUkraineFinancially data={ukraine_data} />
+        <HelpUkraineFinancially financially={data.financially} />
       </Grid>
     </Root>
   )

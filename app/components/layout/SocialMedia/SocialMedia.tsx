@@ -1,4 +1,4 @@
-import { Grid, Link as MuiLink, styled } from '@mui/material'
+import { Grid, Link as MuiLink, Tooltip, styled } from '@mui/material'
 import Image from 'next/image'
 import { memo, useContext } from 'react'
 import { ContactsItemProps, SocialItemProps } from 'shared/types/home'
@@ -47,14 +47,14 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }: Props) => {
-  const { home_data } = useContext(UserLanguageContext)
+  const { data } = useContext(UserLanguageContext)
   return (
     <Root container flexWrap="nowrap" direction="column">
       <Grid item className={`social-media--textDivider ${dividerColor}`} />
 
       <Grid item className="social-media--links-container">
-        <Grid container flexWrap="nowrap" direction="column" rowSpacing={1}>
-          {home_data.contacts.map((item: ContactsItemProps) => (
+        <Grid container flexWrap="nowrap" direction="column" rowGap={1.5}>
+          {data.contacts?.slice(0, 2).map((item: ContactsItemProps) => (
             <Grid item key={item.id}>
               <MuiLink
                 href={item.href}
@@ -70,19 +70,28 @@ export const SocialMedia = memo(({ dividerColor = 'default', color = 'default' }
       </Grid>
 
       <Grid item className="social-media--socials-container">
-        <Grid container flexWrap="nowrap" direction="row" columnSpacing={1}>
-          {home_data.socials.map((item: SocialItemProps) => (
+        <Grid container flexWrap="nowrap" direction="row" columnGap={1}>
+          {data.socialMedias?.map((item: SocialItemProps) => (
             <Grid item key={item.id}>
-              <MuiLink
-                href={item.href}
-                className="about-content--socials-item unstyled"
-                key={item.id}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {/* @ts-ignore */}
-                <Image src={item.icon} alt="social-item--icon" />
-              </MuiLink>
+              <Tooltip title={item.tooltip}>
+                <MuiLink
+                  href={item.href}
+                  className="about-content--socials-item unstyled"
+                  key={item.id}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={item.icon.url}
+                    alt={item.icon.fileName}
+                    style={{
+                      width: 24,
+                      aspectRatio: '1/1',
+                      height: '100%',
+                    }}
+                  />
+                </MuiLink>
+              </Tooltip>
             </Grid>
           ))}
         </Grid>

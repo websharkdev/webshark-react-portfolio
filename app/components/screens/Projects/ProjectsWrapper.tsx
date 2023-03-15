@@ -1,16 +1,15 @@
-import { Box, Divider, Grid, styled } from '@mui/material'
-import { motion } from 'framer-motion'
-import { FC, useEffect, useState } from 'react'
-import { useInView } from 'react-intersection-observer'
+import { Divider, Grid, Typography, styled } from '@mui/material'
+import { FC, useContext, useEffect, useState } from 'react'
+import { getWorksData } from 'shared/api/home.api'
 import { useLanguage } from 'shared/hooks/useLanguage'
-import { LanguageProps, ProjectItemProps } from 'shared/types/home'
+import { LanguageProps } from 'shared/types/general'
+import { ProjectItemProps } from 'shared/types/home'
 
+import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
 import { ProjectItem } from '@/components/projects'
 
 import { HeaderBG } from '@/assets/icons/backgrounds'
-
-import { home_dataEN, home_dataRU } from '../Home/data'
 
 type Props = {}
 
@@ -19,16 +18,14 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const ProjectsWrapper: FC<Props> = (props) => {
-  const [language, setLanguage] = useState<LanguageProps>('en')
-  const [data, setData] = useState(home_dataEN)
-  useLanguage({
-    dataEN: home_dataEN,
-    dataRU: home_dataRU,
-    setData,
-    language,
-    setLanguage,
-  })
-  const { project } = data
+  const context = useContext(UserLanguageContext)
+  const [data, setData] = useState<any>()
+
+  useEffect(() => {
+    getWorksData().then((res: any) => setData(res.projectsBlocks[LanguageProps[context.language]]))
+  }, [])
+
+  if (data === undefined) return <Typography>Loading...</Typography>
 
   return (
     <Root container rowSpacing={12}>
@@ -51,7 +48,7 @@ export const ProjectsWrapper: FC<Props> = (props) => {
         />
         <Divider light />
       </Grid>
-      {project.projects.map((item: ProjectItemProps, id: number) => (
+      {data.projectItems.map((item: ProjectItemProps, id: number) => (
         <Grid item xs={12} key={id}>
           <ProjectItem data={item} variant={id % 2 ? 'green' : 'purpule'} />
         </Grid>

@@ -1,18 +1,15 @@
 import { Box, Grid, Link as MuiLink, Typography, styled } from '@mui/material'
 import Image from 'next/image'
-import { FC, useContext, useEffect, useState } from 'react'
-import { useLanguage } from 'shared/hooks/useLanguage'
-import { LanguageProps, MenuItemProps } from 'shared/types/home'
-
-import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
+import { FC } from 'react'
+import { MenuItemProps } from 'shared/types/home'
 
 import { buyMeACoffeQR } from '@/assets/icons/ui'
 
-import { UserLanguageContext } from '../Layout'
 import { SocialMedia } from '../SocialMedia'
-import styles from '../layout.module.sass'
 
-type Props = {}
+type Props = {
+  data: any
+}
 
 const Root = styled(Grid)(({ theme }) => ({
   flexWrap: 'nowrap',
@@ -76,19 +73,8 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const Footer: FC = (props: Props) => {
-  const [language, setLanguage] = useState<LanguageProps>('en')
-  const [data, setData] = useState(home_dataEN)
-
-  useLanguage({
-    dataEN: home_dataEN,
-    dataRU: home_dataRU,
-    setData,
-    language,
-    setLanguage,
-  })
-
-  const { menu, fio } = data
+export const Footer: FC<Props> = ({ data }) => {
+  const { menus, fio } = data
   return (
     <Root container>
       <Grid item xs={12} md={8} className="footer-leftSide">
@@ -97,9 +83,9 @@ export const Footer: FC = (props: Props) => {
             <Typography variant="h3">menu.</Typography>
             <Box className="footer-leftSide--divider" />
             <Grid container mt={2.5} rowSpacing={3}>
-              {menu.map((item: MenuItemProps) => (
-                <Grid item xs={6} key={item.id} className={`footer-menu--item ${styles.MenuItem}`}>
-                  <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
+              {menus?.map((item: MenuItemProps) => (
+                <Grid item xs={6} key={item.id} className="footer-menu--item">
+                  <MuiLink href={item.href}>{`${item.name}.`}</MuiLink>
                 </Grid>
               ))}
             </Grid>
@@ -126,7 +112,7 @@ export const Footer: FC = (props: Props) => {
           <SocialMedia color="white" dividerColor="light" />
           <Grid item xs={12}>
             <Box className="footer-rightSide--qrcodeBox">
-              <MuiLink href="https://www.buymeacoffee.com/webshark">
+              <MuiLink className="unstyled" href="https://www.buymeacoffee.com/webshark">
                 <Image width="95px" height="95px" src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
               </MuiLink>
             </Box>

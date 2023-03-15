@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   Grid,
@@ -12,15 +11,15 @@ import {
   useMediaQuery,
 } from '@mui/material'
 import { motion } from 'framer-motion'
-import { FC, useContext, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
+import 'shared/api/home.api'
 import { MenuItemProps } from 'shared/types/home'
 
-import { home_data, home_dataEN, home_dataRU } from '@/components/screens/Home/data'
+import LanguageHandlerBurger from '../language/LanguageHandlerBurger'
 
-import { UserLanguageContext } from '../Layout'
-import styles from '../layout.module.sass'
-
-type Props = {}
+type Props = {
+  data: any
+}
 
 const icon = {
   hidden: {
@@ -72,7 +71,11 @@ const Wrapper = styled(Box)(({ theme }) => ({
   },
 }))
 
-const Rectangle = ({ position }: any) => {
+type RectangleProps = {
+  position: number[]
+}
+
+const Rectangle = ({ position }: RectangleProps) => {
   return (
     <motion.rect
       initial="hidden"
@@ -86,10 +89,7 @@ const Rectangle = ({ position }: any) => {
   )
 }
 
-export const Header: FC<Props> = () => {
-  const languageProps = useContext(UserLanguageContext)
-
-  const [data, setData] = useState(home_dataEN)
+export const Header: FC<Props> = ({ data }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const menuOpen = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -98,24 +98,16 @@ export const Header: FC<Props> = () => {
   const handleClose = () => {
     setAnchorEl(null)
   }
-  useEffect(() => {
-    switch (languageProps.language) {
-      case 'en':
-        setData(home_dataEN)
-        break
-      case 'ru':
-        setData(home_dataRU)
-        break
+  const { menus } = data
 
-      default:
-        break
-    }
-  }, [languageProps.language])
+  const tablet = useMediaQuery((theme) =>
+    // @ts-ignore
+    theme.breakpoints.down('md')
+  )
 
-  const { menu, header_fio } = data
-  const { languages } = home_data
-  // @ts-ignore
-  const tablet = useMediaQuery((theme) => theme.breakpoints.down('md'))
+  if (data === undefined) return <Typography>Loading...</Typography>
+
+  console.log(data)
 
   return (
     <Wrapper>
@@ -142,9 +134,9 @@ export const Header: FC<Props> = () => {
                     initial="hidden"
                     variants={icon}
                   >
-                    <Rectangle position={['0', '0']} />
-                    <Rectangle position={['10', '0']} />
-                    <Rectangle position={['20', '0']} />
+                    <Rectangle position={[0, 0]} />
+                    <Rectangle position={[10, 0]} />
+                    <Rectangle position={[20, 0]} />
                   </motion.svg>
                 ) : (
                   <motion.svg
@@ -157,56 +149,31 @@ export const Header: FC<Props> = () => {
                     initial="hidden"
                     variants={icon}
                   >
-                    <Rectangle position={['0', '20']} />
-                    <Rectangle position={['10', '10']} />
-                    <Rectangle position={['20', '0']} />
+                    <Rectangle position={[0, 20]} />
+                    <Rectangle position={[10, 10]} />
+                    <Rectangle position={[20, 0]} />
                   </motion.svg>
                 )}
               </IconButton>
               <Drawer id="basic-menu" anchor="top" open={menuOpen} onClose={handleClose}>
                 <Box sx={{ py: 4 }}>
-                  {menu.map((item: MenuItemProps) => (
-                    <MenuItem onClick={handleClose} key={item.id} className={`header-menu--item ${styles.MenuItem}`}>
-                      <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
+                  {menus?.map((item: any) => (
+                    <MenuItem onClick={handleClose} key={item.id} className={`header-menu--item`}>
+                      <MuiLink href={item.link}>{`${item.name}.`}</MuiLink>
                     </MenuItem>
                   ))}
 
                   <MenuItem sx={{ mt: 4 }}>
-                    <Grid container>
-                      {languages.map((item, id) => (
-                        <Grid
-                          item
-                          sx={{ display: 'flex', justifyContent: 'center' }}
-                          key={id}
-                          xs={12 / languages.length}
-                        >
-                          <Button
-                            size="small"
-                            variant="contained"
-                            color="primary"
-                            onClick={() => {
-                              languageProps.setLanguage(item)
-                              window.localStorage.setItem('language_folio', item)
-                              setAnchorEl(null)
-                            }}
-                            className={`unStyled language_menu--item ${
-                              item === languageProps.language ? 'active' : ''
-                            }`}
-                          >
-                            {item}
-                          </Button>
-                        </Grid>
-                      ))}
-                    </Grid>
+                    <LanguageHandlerBurger setHideMenu={setAnchorEl} />
                   </MenuItem>
                 </Box>
               </Drawer>
             </Box>
           ) : (
             <Grid container spacing={{ sm: 2, md: 4 }}>
-              {menu.map((item: MenuItemProps) => (
-                <Grid item sm={6} md={'auto'} key={item.id} className={`header-menu--item ${styles.MenuItem}`}>
-                  <MuiLink href={item.link}>{`${item.title}.`}</MuiLink>
+              {menus?.map((item: MenuItemProps) => (
+                <Grid item sm={6} md={'auto'} key={item.id} className={`header-menu--item`}>
+                  <MuiLink href={item.href}>{`${item.name}.`}</MuiLink>
                 </Grid>
               ))}
             </Grid>
@@ -214,7 +181,7 @@ export const Header: FC<Props> = () => {
         </Grid>
         <Grid item flex={1}>
           <Typography variant="h5" align="right" className="header-fio">
-            {header_fio}
+            {data.fio}
           </Typography>
         </Grid>
       </Root>

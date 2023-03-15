@@ -1,38 +1,38 @@
-import { Divider, Grid, styled } from '@mui/material'
-import { useState } from 'react'
-import { useLanguage } from 'shared/hooks/useLanguage'
-import { LanguageProps } from 'shared/types/home'
+import { Divider, Grid, Typography, styled } from '@mui/material'
+import { useContext, useEffect, useState } from 'react'
+import { getAboutData } from 'shared/api/home.api'
+import { LanguageProps } from 'shared/types/general'
 
+import { UserLanguageContext } from '@/components/layout/Layout'
 import { HeaderWrapper } from '@/components/layout/header/HeaderWrapper'
 import { AboutBody } from '@/components/screens/Home/components'
-import { home_dataEN, home_dataRU } from '@/components/screens/Home/data'
 
 import { HeaderBG } from '@/assets/icons/backgrounds'
 
-import { PersonalInformation, WorkHistory } from './components'
+import { ContactsBody } from '../Contacts/components'
+
+import { WorkHistory } from './components'
 
 type Props = {}
 
 const Root = styled(Grid)(({ theme }) => ({
   padding: `0 ${theme.spacing(4)}`,
-  // width: `calc(100% - ${theme.spacing(4 * 2)})`,
   [theme.breakpoints.down('md')]: {
-    // width: `calc(100% - ${theme.spacing(2.5 * 2)})`,
     padding: `0 ${theme.spacing(2.5)}`,
   },
 }))
 
 export const AboutWrapper = (props: Props) => {
-  const [language, setLanguage] = useState<LanguageProps>('en')
-  const [home_bodyData, setHome_bodyData] = useState(home_dataEN)
+  const context = useContext(UserLanguageContext)
+  const [data, setData] = useState<any>()
 
-  useLanguage({
-    dataEN: home_dataEN,
-    dataRU: home_dataRU,
-    setData: setHome_bodyData,
-    language,
-    setLanguage,
-  })
+  // setData(res.projectsBlocks[LanguageProps[context.language]]
+  useEffect(() => {
+    getAboutData().then((res: any) => setData(res))
+  }, [context.language])
+
+  if (data === undefined) return <Typography>Loading...</Typography>
+
   return (
     <Root container rowSpacing={12}>
       <Grid item xs={12}>
@@ -40,7 +40,7 @@ export const AboutWrapper = (props: Props) => {
           subtitle="creative developer"
           photoBG={HeaderBG}
           position="background"
-          shift={'unstyled'}
+          shift="unstyled"
           size={{
             xs: [256, 256],
             sm: [440, 440],
@@ -58,18 +58,23 @@ export const AboutWrapper = (props: Props) => {
         <Divider light />
       </Grid>
       <Grid item xs={12}>
-        <AboutBody data={home_bodyData} />
+        <AboutBody data={data.aboutBlocks[LanguageProps[context.language]]} fio={context.data.fio} />
 
         <Divider light />
       </Grid>
+
       <Grid item xs={12}>
-        <WorkHistory data={home_bodyData} />
+        <WorkHistory data={data.workHistoryBlocks[LanguageProps[context.language]]} />
 
         <Divider light />
       </Grid>
-      <Grid item xs={12}>
-        <PersonalInformation data={home_bodyData} />
 
+      <Grid item xs={12}>
+        <ContactsBody
+          data={data.contactsBlocks[LanguageProps[context.language]]}
+          fio={context.data.fio}
+          stack={data.homePages[LanguageProps[context.language]].techStack}
+        />
         <Divider light />
       </Grid>
     </Root>

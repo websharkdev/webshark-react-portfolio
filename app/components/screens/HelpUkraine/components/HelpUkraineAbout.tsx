@@ -1,20 +1,9 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
 import { FC } from 'react'
+import { ImageHelpUkraineProps, ParallaxTextProps } from 'shared/types/Ukraine'
 
-type ParallaxTextProps = {
-  id: number
-  text: string
-}
 type Props = {
-  data: {
-    section: string
-    images: {
-      id: number
-      src: string
-      alt: string
-    }[]
-    text: ParallaxTextProps[]
-  }
+  data: any
 }
 
 const Root = styled(Grid)(({ theme }) => ({
@@ -27,6 +16,7 @@ const Root = styled(Grid)(({ theme }) => ({
     padding: `0 ${theme.spacing(5)}`,
     '& .help_Ukraine-image': {
       width: '100%',
+      aspectRatio: '16/9',
     },
     [theme.breakpoints.down('md')]: {
       display: 'none',
@@ -50,7 +40,7 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const HelpUkraineAbout: FC<Props> = ({ data }) => {
-  const { section, images } = data
+  const { section, images, text } = data
 
   const randomIndexImage = Math.floor(Math.random() * (5 - 1 + 1) + 1)
 
@@ -74,10 +64,10 @@ export const HelpUkraineAbout: FC<Props> = ({ data }) => {
       </Grid>
       <Grid item xs={12} md={3} className="help_Ukraine-content-box">
         <Grid container rowSpacing={{ xs: 40, md: 120 }}>
-          {data.text.map(({ text, id }: ParallaxTextProps) => (
+          {text.map((textItem: ParallaxTextProps) => (
             <Grid
               item
-              key={id}
+              key={textItem.id}
               xs={12}
               sx={{
                 '& img': {
@@ -86,14 +76,14 @@ export const HelpUkraineAbout: FC<Props> = ({ data }) => {
               }}
             >
               <img
-                src={images[id].src}
-                alt={images[id].alt}
+                src={images[+textItem.id].src}
+                alt={images[+textItem.id].alt}
                 style={{
                   width: '100%',
                 }}
               />
               <Typography variant="body2" className="help_Ukraine-content-text" mt={{ xs: 10, md: 0 }}>
-                {text}
+                {textItem.text}
               </Typography>
             </Grid>
           ))}

@@ -6,22 +6,21 @@ export interface Image {
   size?: 'xl' | 'lg' | 'md' | 'xs'
 }
 
+
 export interface HomeSwiperItem {
   id: number
   image: Image
 }
 
-export type LanguageProps = 'en' | 'es' | 'uk' | 'ru'
-
 export type MenuItemProps = {
-  id: number
-  link: string
-  title: string
+  id: string
+  href: string
+  name: string
 }
 
 export type ButtonProps = {
   name: string
-  link: string
+  href: string
 }
 
 export type HomePageData = {
@@ -37,9 +36,10 @@ export type ContactsItemProps = {
 }
 
 export type SocialItemProps = {
-  id: number
-  icon: React.ReactElement
+  id: string
+  icon: any
   href: string
+  tooltip?: string
 }
 
 export type AboutPageData = {
@@ -64,6 +64,7 @@ export type ProjectItemProps = {
 export type ProjectsPageData = {
   section: string
   projects: ProjectItemProps[]
+  btn: ButtonProps
 }
 export type WorkHistoryItemProps = {
   id: number
@@ -78,16 +79,46 @@ export type WorkHistoryProps = {
   history: WorkHistoryItemProps[]
 }
 
+export type PersonalInfoProps = {
+  id: string
+  name: string
+  props: string
+}
+
+export type ContactsProps = {
+  fio: string
+  section: string
+  text: string
+  contacts_links: ContactsItemProps[]
+  info: PersonalInfoProps[]
+  tech_stack: string
+  btn: ButtonProps
+}
+export type AboutProps = {
+  fio: string
+  about: AboutPageData
+  work_history: WorkHistoryProps
+  personal_info: {
+    section: string
+    text: string
+    fio: string
+    info: {
+      id: number
+      title: string
+      text: string
+    }[]
+    tech_stack: StackPageData['tech_stack']
+    btn: ButtonProps
+  }
+}
+
 export type DataProps = {
   menu: MenuItemProps[]
   fio: string
   header_fio: string
   home: HomePageData
-  about: AboutPageData
-  personal_info: any
-  work_history: WorkHistoryProps
+  about: AboutProps
   stack: StackPageData
-  project: ProjectsPageData
 }
 
 export type ImagePositionProps = 'default' | 'unStyled' | 'block' | 'background'
@@ -115,4 +146,12 @@ export type PhotoContainerProps = {
   size?: ImageSizeProps
   shift?: ImageShiftProps
   className?: string
+}
+
+export type HomeProps = {
+  languages: any
+  contacts: ContactsItemProps[]
+  socials: SocialItemProps[]
+  mail: string
+  cv_link: string
 }

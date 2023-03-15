@@ -1,7 +1,8 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
 import Image from 'next/image'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { useWidth } from 'shared/hooks'
+import { HelpAidProps, HelpUkraineFinanciallyProps } from 'shared/types/Ukraine'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
@@ -13,7 +14,7 @@ import { HelpUkraineBlob } from '@/assets/icons/blobs'
 import { HelpUkraineAidCard } from './HelpUkraineAidCard'
 
 type Props = {
-  data: any
+  financially: HelpUkraineFinanciallyProps
 }
 
 const Root = styled(Grid)(({ theme }) => ({
@@ -42,13 +43,36 @@ const Root = styled(Grid)(({ theme }) => ({
   },
 }))
 
-export const HelpUkraineFinancially: FC<Props> = ({ data }) => {
-  const { financially } = data
+export const HelpUkraineFinancially: FC<Props> = ({ financially }) => {
+  const { section, text, aids } = financially
+  const [slidesPerView, setSlidesPerView] = useState(4)
   const currentWidth = useWidth()
+
+  useEffect(() => {
+    switch (currentWidth) {
+      case 'xs':
+        setSlidesPerView(1)
+        break
+      case 'sm':
+        setSlidesPerView(1)
+        break
+      case 'md':
+        setSlidesPerView(2)
+        break
+      case 'lg':
+        setSlidesPerView(3)
+        break
+
+      default:
+        setSlidesPerView(4)
+        break
+    }
+  }, [])
+
   return (
     <Root container rowSpacing={6}>
       <Grid item xs={12}>
-        <Typography variant="h3">{financially.section}</Typography>
+        <Typography variant="h3">{section}</Typography>
       </Grid>
       <Grid item xs={12}>
         <Grid container className="help_financially-content-box">
@@ -62,23 +86,23 @@ export const HelpUkraineFinancially: FC<Props> = ({ data }) => {
             </Typography>
           </Grid>
           <Box className="help_financially-blob">
-            <Image src={HelpUkraineBlob} alt={'help Ukraine Blob'} />
+            <Image src={HelpUkraineBlob} alt="help Ukraine Blob" />
           </Box>
           <Grid item xs={12} md={4} className="help_financially-text-box">
             <Box className="help_financially-textDivider" />
-            <Typography variant="body2">{financially.text}</Typography>
+            <Typography variant="body2">{text}</Typography>
           </Grid>
         </Grid>
       </Grid>
       <Grid item xs={12} mb={12}>
         <Swiper
-          slidesPerView={currentWidth === 'xs' || 'sm' ? 1 : currentWidth === 'md' ? 3 : 4}
+          slidesPerView={slidesPerView}
           spaceBetween={20}
           pagination={{
             clickable: true,
           }}
         >
-          {financially.aids.map((item: any) => (
+          {aids.map((item: HelpAidProps) => (
             <SwiperSlide key={item.id} style={{ borderRadius: 4, overflow: 'hidden' }}>
               <HelpUkraineAidCard data={item} />
             </SwiperSlide>

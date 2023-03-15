@@ -4,15 +4,15 @@ import { ParallaxText } from 'shared/hooks/useTextScrolling'
 import { DataProps } from 'shared/types/home'
 
 type Props = {
-  data: DataProps
+  stack: string
+  section: string
 }
 
 const Root = styled(Grid)(({ theme }) => ({
   paddingBottom: theme.spacing(12),
 }))
 
-export const StackBody = ({ data }: Props) => {
-  const { stack } = data
+export const StackBody = ({ stack, section }: Props) => {
   const [innerRef, inView] = useInView()
   const tablet = useMediaQuery((theme) =>
     // @ts-ignore
@@ -22,14 +22,14 @@ export const StackBody = ({ data }: Props) => {
   return (
     <Root container rowSpacing={10} ref={innerRef}>
       <Grid item xs={12} className="stack-section">
-        <Typography variant="h3">{stack.section}</Typography>
+        <Typography variant="h3">{section}.</Typography>
       </Grid>
       <Grid item xs={12} className="stack-section">
         <ParallaxText baseVelocity={0.4} fontSize={tablet ? 24 : 56} inView={inView}>
-          {stack.tech_stack}
+          {stack}
         </ParallaxText>
         <ParallaxText baseVelocity={-0.2} fontSize={tablet ? 24 : 56} inView={inView}>
-          {stack.tech_stack}
+          {stack}
         </ParallaxText>
       </Grid>
     </Root>

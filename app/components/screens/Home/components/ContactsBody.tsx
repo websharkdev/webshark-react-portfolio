@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography, styled, useMediaQuery } from '@mui/material'
+import { ContactsProps } from 'shared/types/home'
 
 import { SocialMedia } from '@/components/layout/SocialMedia'
 import { PhotoContainer } from '@/components/layout/photoContainer'
@@ -43,16 +44,15 @@ const Root = styled(Grid)(({ theme }) => ({
 }))
 
 export const ContactsBody = ({ data }: Props) => {
-  const { contacts } = data
   const tablet = useMediaQuery((theme) =>
     // @ts-ignore
     theme.breakpoints.down('md')
   )
 
   return (
-    <Root container rowSpacing={12} alignItems="center">
+    <Root container rowSpacing={{ xs: 5, md: 10 }} alignItems="center">
       <Grid item xs={12}>
-        <Typography variant="h3">{contacts.section}</Typography>
+        <Typography variant="h3">{data.section}</Typography>
       </Grid>
       <Grid item lg={5} xs={12} sx={{ pt: { xs: '45px!important', md: '0 !important' } }}>
         <PhotoContainer
@@ -77,7 +77,7 @@ export const ContactsBody = ({ data }: Props) => {
           <Grid item>
             <Box className="contacts-body--textDivider" />
             <Typography variant="body2" maxWidth={{ xs: '100%', md: 612 }}>
-              {contacts.text}
+              {data.text}
             </Typography>
           </Grid>
           <Grid item>
@@ -91,18 +91,16 @@ export const ContactsBody = ({ data }: Props) => {
                   sx={{ ml: { xs: 0, md: 4 }, mb: { xs: 0, md: 4 } }}
                   size={tablet ? 'medium' : 'large'}
                   className="contacts-body--container-btn"
-                  href={`mailto:${contacts.btn.link}`}
+                  href={`mailto:${data.btn.link}`}
                   variant="contained"
                 >
-                  {contacts.btn.name}
+                  {data.btn.name}
                 </Button>
               </Typography>
             </Box>
           </Grid>
           <Grid item flex={1} />
-          <Grid item>
-            <SocialMedia />
-          </Grid>
+          <Grid item>{/* <SocialMedia /> */}</Grid>
         </Grid>
       </Grid>
     </Root>

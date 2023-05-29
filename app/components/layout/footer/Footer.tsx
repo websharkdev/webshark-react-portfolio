@@ -113,7 +113,7 @@ export const Footer: FC<Props> = ({ data }) => {
           <Grid item xs={12}>
             <Box className="footer-rightSide--qrcodeBox">
               <MuiLink className="unstyled" href="https://www.buymeacoffee.com/webshark">
-                <Image width="95px" height="95px" src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
+                <Image width={95} height={95} src={buyMeACoffeQR} alt="buyMeACoffeQR Icon" />
               </MuiLink>
             </Box>
           </Grid>

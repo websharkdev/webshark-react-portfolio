@@ -1,9 +1,9 @@
 import { Box, Grid, Typography, styled } from '@mui/material'
-import { FC } from 'react'
-
-import LanguageHandler from '@/components/layout/language'
+import { FC, lazy } from 'react'
 
 import styles from '@/screens/Home/home.module.sass'
+
+const LanguageHandler = lazy(() => import('@/components/layout/language'))
 
 type Props = {}
 

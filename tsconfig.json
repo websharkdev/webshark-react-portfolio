@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,19 +20,45 @@
     "incremental": true,
     "baseUrl": "./app",
     "paths": {
-      "@/components/*": ["./components/*"],
-      "@/ui/*": ["./components/ui/*"],
-      "@/screens/*": ["./components/screens/*"],
-
-      "@/config/*": ["./config/*"],
-
-      "@/assets/*": ["./assets/*"],
-      "@/styles/*": ["./assets/styles/*"],
-
-      "@/utils/*": ["./utils/*"],
-      "@/providers/*": ["./providers/*"]
-    }
+      "@/components/*": [
+        "./components/*"
+      ],
+      "@/ui/*": [
+        "./components/ui/*"
+      ],
+      "@/screens/*": [
+        "./components/screens/*"
+      ],
+      "@/config/*": [
+        "./config/*"
+      ],
+      "@/assets/*": [
+        "./assets/*"
+      ],
+      "@/styles/*": [
+        "./assets/styles/*"
+      ],
+      "@/utils/*": [
+        "./utils/*"
+      ],
+      "@/providers/*": [
+        "./providers/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-  "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "app/shared/api/home.api.ts"]
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "app/shared/api/home.api.ts",
+    ".next/types/**/*.ts"
+  ]
 }

@@ -1,0 +1,31 @@
+@import '/app/assets/styles/globals.sass'
+
+    
+.Wrapper 
+    width: 100%
+    margin: 0 auto
+    padding: 34px
+    background: $background-default
+    @media ( max-width: $sm )
+        padding: 24px 20px
+
+.Root
+    width: 100%
+    display: flex
+    flex-wrap: nowrap
+    margin-bottom: $spacing * 2
+    align-items: center
+    position: relative
+    z-index: 30
+    @media ( max-width: $md )
+        align-items: flex-start
+    @media ( max-width: $sm )
+        align-items: center
+    & .header-fio
+        @media ( max-width: $md )
+            font-size: 18
+        @media ( max-width: $md )
+            font-size: 16
+        @media ( max-width: $sm )
+            font-size: 14
+

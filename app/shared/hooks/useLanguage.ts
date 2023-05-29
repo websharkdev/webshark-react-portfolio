@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react'
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 
 import { UserLanguageContext } from '@/components/layout/Layout'
 

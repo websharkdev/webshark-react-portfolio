@@ -1,5 +1,3 @@
-import { ImageProps } from 'next/image'
-
 export interface IconProps {
   id: string
   url: string
@@ -120,8 +118,8 @@ export type ImageSProps = {
 }
 
 export type PhotoContainerProps = {
-  mainPhoto?: ImageProps
-  photoBG?: ImageProps
+  mainPhoto?: any
+  photoBG?: any
   position?: 'default' | 'unStyled' | 'block' | 'background'
   size?: ImageSProps
   shift?: ImageSProps

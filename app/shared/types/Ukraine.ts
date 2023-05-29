@@ -1,15 +1,21 @@
-export type UkraineAidCardProps = {
-  id: number
-  title: string
-  text: string
-  image: string
-  link: LinkProps
+export type LinkProps = {
+  id: string
+  href: string
+  name: string
 }
 
 export interface ImageHelpUkraineProps {
   id: number
   src: string
   alt: string
+}
+
+export type UkraineAidCardProps = {
+  id: number
+  title: string
+  text: string
+  image: string
+  link: LinkProps
 }
 
 export type UkraineProps = {
@@ -24,12 +30,6 @@ export type UkraineProps = {
     text: string
     aids: UkraineAidCardProps[]
   }
-}
-
-export type LinkProps = {
-  id: string
-  href: string
-  name: string
 }
 
 export type HelpAidProps = {

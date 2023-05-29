@@ -45,7 +45,7 @@ const ParallaxBody = styled(Box)(({ theme }) => ({
   },
 }))
 
-export const ParallaxText = memo(({ children, baseVelocity = 100, fontSize, inView }: ParallaxProps) => {
+const ParallaxText = memo(({ children, baseVelocity = 100, fontSize = 14, inView }: ParallaxProps) => {
   const baseX = useMotionValue(0)
   const { scrollY } = useScroll()
   const scrollVelocity = useVelocity(scrollY)
@@ -75,20 +75,22 @@ export const ParallaxText = memo(({ children, baseVelocity = 100, fontSize, inVi
   const NumberOfSpan = 12 // Number of span (how many it's will repeat)
 
   return (
-    <ParallaxBody className="parallax">
+    <ParallaxBody className="parallax" fontSize={fontSize}>
       {inView ? (
-        <motion.div className="scroller" style={{ x, fontSize: `${fontSize}px` }}>
+        <motion.div className="scroller" style={{ x }}>
           {[...Array(NumberOfSpan)].map((e, i) => (
-            <span key={i}>{children}</span>
+            <span key={`${i}_${e}`}>{children}</span>
           ))}
         </motion.div>
       ) : (
-        <div className="scroller" style={{ fontSize: `${fontSize}px` }}>
+        <div className="scroller">
           {[...Array(NumberOfSpan)].map((e, i) => (
-            <span key={i}>{children}</span>
+            <span key={`${i}_${e}`}>{children}</span>
           ))}
         </div>
       )}
     </ParallaxBody>
   )
 })
+
+export default ParallaxText

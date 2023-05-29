@@ -1,7 +1,7 @@
 import { Box, Button, Menu, MenuItem, Typography, styled } from '@mui/material'
 import { memo, useContext, useEffect, useState } from 'react'
 import { getGeneralData } from 'shared/api/home.api'
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 
 import { UserLanguageContext } from '../Layout'
 

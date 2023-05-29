@@ -1,7 +1,7 @@
 import { Divider, Grid, Typography, styled } from '@mui/material'
 import { FC, useContext, useEffect, useState } from 'react'
 import { getWorksData } from 'shared/api/home.api'
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 import { ProjectItemProps, ProjectsPageData } from 'shared/types/home'
 
 import { UserLanguageContext } from '@/components/layout/Layout'

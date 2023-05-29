@@ -1,14 +1,15 @@
 import { motion, useScroll } from 'framer-motion'
-import { FC, ReactElement, createContext, useEffect, useState } from 'react'
+import { FC, ReactElement, Suspense, createContext, lazy, useEffect, useState } from 'react'
 import { getGeneralData } from 'shared/api/home.api'
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 import { HeaderDataProps } from 'shared/types/home'
 
 import { HelpUkraine } from '@/components/layout/HelpUkraine'
-import { Footer } from '@/components/layout/footer'
-import { Header } from '@/components/layout/header'
 
 import styles from './layout.module.sass'
+
+const Footer = lazy(() => import('@/components/layout/footer'))
+const Header = lazy(() => import('@/components/layout/header'))
 
 interface LanguageContext {
   language: LanguageProps
@@ -31,26 +32,28 @@ const Layout: FC<{ children: ReactElement }> = ({ children }) => {
     getGeneralData().then((res: any) => setData(res.generals[0]))
   }, [])
 
-  if (data === undefined) return <div>Loading...</div>
-
   return (
-    <UserLanguageContext.Provider
-      value={{
-        language,
-        setLanguage,
-        data,
-      }}
-    >
-      <motion.div className={styles.ProgressBar} style={{ scaleX: scrollYProgress }} />
-      <div className={styles.layout}>
-        {data && <Header data={data} />}
-        <div className={styles.page}>{children}</div>
-        <div className={styles.footer}>
-          <HelpUkraine />
-          {data && <Footer data={data} />}
-        </div>
-      </div>
-    </UserLanguageContext.Provider>
+    <Suspense fallback={<div>Loading...</div>}>
+      {data && (
+        <UserLanguageContext.Provider
+          value={{
+            language,
+            setLanguage,
+            data,
+          }}
+        >
+          <motion.div className={styles.ProgressBar} style={{ scaleX: scrollYProgress }} />
+          <div className={styles.layout}>
+            {data && <Header data={data} />}
+            <div className={styles.page}>{children}</div>
+            <div className={styles.footer}>
+              <HelpUkraine />
+              {data && <Footer data={data} />}
+            </div>
+          </div>
+        </UserLanguageContext.Provider>
+      )}
+    </Suspense>
   )
 }
 

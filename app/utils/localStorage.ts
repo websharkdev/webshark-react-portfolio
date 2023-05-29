@@ -1,4 +1,4 @@
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 
 const getStoreLocal = (name: string) => {
   if (typeof localStorage !== 'undefined') {
@@ -12,8 +12,7 @@ export default getStoreLocal
 
 export const getLanguageLocal = (setLanguage: (language: LanguageProps) => void) => {
   if (typeof window !== 'undefined') {
-    // @ts-ignore
-    const LSLanguage: LanguageProps = window!.localStorage!.getItem('language_folio')!
+    const LSLanguage: any = window!.localStorage!.getItem('language_folio')!
     setLanguage(LSLanguage)
   }
 }

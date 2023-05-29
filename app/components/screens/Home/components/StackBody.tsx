@@ -1,6 +1,6 @@
 import { Grid, Typography, styled, useMediaQuery } from '@mui/material'
 import { useInView } from 'react-intersection-observer'
-import { ParallaxText } from 'shared/hooks/useTextScrolling'
+import { ParallaxText } from 'shared/hooks'
 
 type Props = {
   stack: string

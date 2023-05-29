@@ -1,6 +1,6 @@
 import { Button, Grid } from '@mui/material'
 import { memo, useContext } from 'react'
-import { LanguageProps } from 'shared/types/general'
+import LanguageProps from 'shared/types/general'
 
 import { UserLanguageContext } from '../Layout'
 

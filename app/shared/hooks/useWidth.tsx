@@ -2,7 +2,7 @@ import { Breakpoint, Theme, useMediaQuery, useTheme } from '@mui/material'
 
 type BreakpointOrNull = Breakpoint | null
 
-export const useWidth = () => {
+const useWidth = () => {
   const theme: Theme = useTheme()
   const keys: readonly Breakpoint[] = [...theme.breakpoints.keys].reverse()
   return (
@@ -13,3 +13,4 @@ export const useWidth = () => {
     }, null) || 'xs'
   )
 }
+export default useWidth
